@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Technologies | Our Partners</title>
+    <style>
+        /* Existing styles from previous code remain unchanged */
+        /* Add these new styles below existing ones */
+
+        /* Client Showcase Section */
+        .partners-section {
+            padding: 4rem 0;
+            background: var(--black-light);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .client-showcase {
+            position: relative;
+            padding: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .client-track {
+            display: flex;
+            align-items: center;
+            width: calc(150px * 30); /* Double for seamless loop */
+            animation: scroll 40s linear infinite;
+        }
+
+        .client-logo {
+            width: 140px;
+            height: 80px;
+            margin: 0 20px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+            transform: translateZ(10px) scale(1.1);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-150px * 15)); }
+        }
+
+        /* Glow effect container */
+        .glow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .client-showcase:hover .glow {
+            opacity: 0.5;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .client-track {
+                animation-duration: 30s;
+            }
+            
+            .client-logo {
+                width: 100px;
+                height: 60px;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .client-track {
+                animation-duration: 25s;
+            }
+            
+            .client-logo {
+                width: 80px;
+                height: 50px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous sections (header, vision/mission) remain unchanged -->
+
+    <!-- Our Esteemed Partners Section -->
+    <section class="partners-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Esteemed Partners</h2>
+                <p>Collaborating with industry leaders to deliver exceptional manufacturing solutions</p>
+            </div>
+            
+            <div class="client-showcase">
+                <div class="glow-container">
+                    <div class="glow" style="top: 20%; left: 30%;"></div>
+                    <div class="glow" style="bottom: 30%; right: 25%;"></div>
+                </div>
+                
+                <div class="client-track">
+                    <!-- Client logos (duplicated for seamless looping) -->
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=BOSCH" alt="Bosch" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HITACHI" alt="Hitachi" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=MINDA" alt="Minda" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TVS" alt="TVS" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=SIEMENS" alt="Siemens" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=MAHINDRA" alt="Mahindra" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TATA" alt="Tata" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=BAJAJ" alt="Bajaj" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HONDA" alt="Honda" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TOYOTA" alt="Toyota" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=VOLKSWAGEN" alt="Volkswagen" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HYUNDAI" alt="Hyundai" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=ASB" alt="ASB" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HERO" alt="Hero" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=JCB" alt="JCB" class="client-logo">
+                    
+                    <!-- Duplicated logos for seamless looping -->
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=BOSCH" alt="Bosch" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HITACHI" alt="Hitachi" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=MINDA" alt="Minda" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TVS" alt="TVS" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=SIEMENS" alt="Siemens" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=MAHINDRA" alt="Mahindra" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TATA" alt="Tata" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=BAJAJ" alt="Bajaj" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HONDA" alt="Honda" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=TOYOTA" alt="Toyota" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=VOLKSWAGEN" alt="Volkswagen" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HYUNDAI" alt="Hyundai" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=ASB" alt="ASB" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=HERO" alt="Hero" class="client-logo">
+                    <img src="https://via.placeholder.com/150x80/333333/FFFFFF?text=JCB" alt="JCB" class="client-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 3D Hover Effect Enhancement
+        document.querySelectorAll('.client-logo').forEach(logo => {
+            logo.addEventListener('mousemove', (e) => {
+                const rect = logo.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const angleX = (y - centerY) / 10;
+                const angleY = (centerX - x) / 10;
+                
+                logo.style.transform = `
+                    translateZ(10px) 
+                    scale(1.1)
+                    rotateX(${angleX}deg)
+                    rotateY(${angleY}deg)
+                `;
+                
+                // Move glow to cursor position
+                const glow = logo.closest('.client-showcase').querySelector('.glow-container .glow');
+                if (glow) {
+                    glow.style.left = `${e.clientX - rect.left}px`;
+                    glow.style.top = `${e.clientY - rect.top}px`;
+                }
+            });
+
+            logo.addEventListener('mouseleave', () => {
+                logo.style.transform = 'translateZ(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

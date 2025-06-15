@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Technologies | Unit II - Advanced Manufacturing</title>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --black: #121212;
+            --black-light: #1e1e1e;
+            --black-lighter: #2a2a2a;
+            --text: #e6e6e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .unit-hero {
+            height: 70vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url("images/Unit_ll/Unit\ ll.jpg") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, var(--black));
+        }
+
+        /* Machine Sections */
+        .machine-section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .machine-section:nth-child(even) {
+            background: var(--black-light);
+        }
+
+        .machine-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            perspective: 1000px;
+        }
+
+        .machine-container.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .machine-image {
+            flex: 1;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--gold);
+        }
+
+        .machine-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .machine-image:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .machine-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .machine-info {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .machine-info h2 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .machine-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .machine-info ul {
+            list-style-type: none;
+            margin-top: 1.5rem;
+        }
+
+        .machine-info li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .machine-info li::before {
+            content: '•';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .machine-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .machine-info {
+                padding: 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .unit-hero {
+                height: 60vh;
+            }
+            
+            .machine-section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="unit-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container animate">
+            <h1>Unit II - Precision Manufacturing Hub</h1>
+            <p>Where cutting-edge technology meets industrial excellence</p>
+            <div style="margin-top: 2rem;">
+                <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(255,215,0,0.2); border: 1px solid var(--gold); border-radius: 5px;">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+                    Gat No. 169, Talwade Road, Pune
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citizen 5 Axis Machine -->
+    <section class="machine-section">
+        <div class="container">
+            <div class="machine-container animate">
+                <div class="machine-image">
+                    <img src="images/Unit_ll/Sliding.jpg" alt="Citizen 5 Axis Sliding Head Machine">
+                </div>
+                <div class="machine-info delay-1">
+                    <h2>Citizen 5-Axis Sliding Head Machine</h2>
+                    <p>Our precision Swiss-type lathes deliver micron-level accuracy for complex, small-diameter components. The sliding head technology enables uninterrupted production of high-tolerance parts.</p>
+                    <ul>
+                        <li>±0.002mm positional accuracy</li>
+                        <li>20,000 RPM main spindle</li>
+                        <li>Live tooling capabilities</li>
+                        <li>Bar capacity up to Ø32mm</li>
+                        <li>Automated material handling</li>
+                    </ul>
+                    <div style="margin-top: 2rem;">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--black-light); border-radius: 5px; border: 1px solid var(--gold);">
+                            <i class="fas fa-cogs" style="margin-right: 8px; color: var(--gold);"></i>
+                            Primary Application: Medical & Aerospace Components
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mazak Machine -->
+    <section class="machine-section">
+        <div class="container">
+            <div class="machine-container reverse delay-1">
+                <div class="machine-image">
+                    <img src="images/Unit_ll/Mazak.jpg" alt="Mazak Machine">
+                </div>
+                <div class="machine-info animate">
+                    <h2>Mazak INTEGREX i-200S</h2>
+                    <p>The multi-tasking powerhouse that combines turning and milling operations in a single setup, dramatically reducing production time while maintaining exceptional accuracy.</p>
+                    <ul>
+                        <li>5-axis simultaneous machining</li>
+                        <li>52-tool magazine capacity</li>
+                        <li>Max turning diameter: Ø520mm</li>
+                        <li>Y-axis travel: ±100mm</li>
+                        <li>Mazatrol SmoothX CNC control</li>
+                    </ul>
+                    <div style="margin-top: 2rem;">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--black-light); border-radius: 5px; border: 1px solid var(--gold);">
+                            <i class="fas fa-cogs" style="margin-right: 8px; color: var(--gold);"></i>
+                            Primary Application: Complex Automotive & Defense Parts
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tsugami Machine -->
+    <section class="machine-section">
+        <div class="container">
+            <div class="machine-container animate">
+                <div class="machine-image">
+                    <img src="images/Unit_ll/Tsugami.jpg" alt="Tsugami Machine">
+                </div>
+                <div class="machine-info delay-1">
+                    <h2>Tsugami B0205 Swiss-Type Lathe</h2>
+                    <p>Japanese-engineered precision for high-volume production of small, complex components with exceptional surface finishes and tight tolerances.</p>
+                    <ul>
+                        <li>Ø20mm bar capacity</li>
+                        <li>12,000 RPM main spindle</li>
+                        <li>±0.001mm repeatability</li>
+                        <li>8-station gang tool post</li>
+                        <li>Fanuc 31i-B5 CNC control</li>
+                    </ul>
+                    <div style="margin-top: 2rem;">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--black-light); border-radius: 5px; border: 1px solid var(--gold);">
+                            <i class="fas fa-cogs" style="margin-right: 8px; color: var(--gold);"></i>
+                            Primary Application: Electronics & Connector Components
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unit Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 1rem;" class="animate">Unit II By The Numbers</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem;" class="delay-1">Quantifying our manufacturing capabilities</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card animate">
+                    <div class="stat-number">15+</div>
+                    <p>Advanced CNC Machines</p>
+                </div>
+                <div class="stat-card delay-1">
+                    <div class="stat-number">24/7</div>
+                    <p>Production Capacity</p>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-number">±0.001mm</div>
+                    <p>Tolerance Standards</p>
+                </div>
+                <div class="stat-card delay-1">
+                    <div class="stat-number">200+</div>
+                    <p>Skilled Technicians</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animation on scroll
+        const animateElements = () => {
+            const elements = document.querySelectorAll('.animate, .delay-1, .delay-2');
+            elements.forEach(el => {
+                const elementPosition = el.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state
+        document.querySelectorAll('.animate, .delay-1, .delay-2').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+        });
+
+        // 3D hover effect for machine images
+        document.querySelectorAll('.machine-image').forEach(image => {
+            image.addEventListener('mousemove', (e) => {
+                const rect = image.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                image.style.transform = `
+                    translateY(-10px)
+                    rotateX(${angleX}deg)
+                    rotateY(${angleY}deg)
+                `;
+            });
+
+            image.addEventListener('mouseleave', () => {
+                image.style.transform = 'translateY(-10px) rotateX(5deg) rotateY(5deg)';
+            });
+        });
+
+        window.addEventListener('scroll', animateElements);
+        window.addEventListener('load', animateElements);
+    </script>
+</body>
+</html>

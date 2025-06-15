@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahantesh M Jakati - Visionary Founder | Perfect Technologies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5364;
+      --secondary: #203a43;
+      --accent: #0fce8c;
+      --light: #f8f9fa;
+      --dark: #0f2027;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--dark), var(--secondary), var(--primary));
+      color: var(--light);
+      min-height: 100vh;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .founder-card {
+      perspective: 1000px;
+      width: 280px;
+      height: 280px;
+      position: relative;
+    }
+
+    .founder-photo {
+      width: 100%;
+      height: 100%;
+      background-image: url('./images/founder.jpeg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founder-photo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(15, 206, 140, 0.3), rgba(44, 83, 100, 0.5));
+      z-index: 1;
+    }
+
+    .founder-photo:hover {
+      transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+      box-shadow: 0 35px 60px rgba(15, 206, 140, 0.3);
+    }
+
+    .founder-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: left;
+      z-index: 2;
+      transform: translateZ(30px);
+    }
+
+    .founder-title {
+      display: block;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-top: 0.5rem;
+      color: var(--accent);
+    }
+
+    .section {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(15, 206, 140, 0.2);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .description p {
+      margin-bottom: 1.5rem;
+    }
+
+    .description strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    ul {
+      list-style-position: inside;
+      margin: 1.5rem 0;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    li::before {
+      content: '•';
+      color: var(--accent);
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -3px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--accent);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .magazines {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .magazine {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      transition: all 0.5s ease;
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .magazine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(15, 206, 140, 0.1));
+      z-index: -1;
+    }
+
+    .magazine:hover {
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .magazine img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .magazine:hover img {
+      transform: scale(1.05);
+    }
+
+    .magazine-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .magazine-date {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .personal-insights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .insight-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .insight-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .insight-icon {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .insight-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .insight-value {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .quote-section {
+      position: relative;
+      padding: 3rem;
+      text-align: center;
+      margin: 3rem 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(15, 206, 140, 0.1), rgba(44, 83, 100, 0.3));
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '"';
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: 15rem;
+      color: rgba(255, 255, 255, 0.05);
+      top: -5rem;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 0;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-author {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+      
+      .quote-text {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="founder-card">
+      <div class="founder-photo">
+        <div class="founder-name">Mahantesh Jakati
+          <span class="founder-title">Founder, Perfect Technologies</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-section">
+      <p class="quote-text">"Integrating cutting-edge technology with sustainable practices to revolutionize plastic solutions for tomorrow's challenges."</p>
+      <p class="quote-author">— Mahantesh M Jakati</p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Visionary Leadership</h2>
+      <div class="description">
+        <p><strong>Mahantesh M Jakati</strong> is a passionate entrepreneur and industry pioneer with deep expertise in plastic injection molding, precision mold making, and high-accuracy machining. As the driving force behind Perfect Technologies, he has established the company as an innovator in advanced manufacturing solutions.</p>
+        
+        <p>With the global plastic injection molding market projected to hit <strong>US $995 billion by 2032</strong>, Mahantesh has positioned Perfect Technologies at the forefront of this growth through strategic technology integration and operational excellence. His leadership has been instrumental in delivering high-quality engineering solutions across automotive, electronics, and emerging sectors like electric vehicles.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Industry Impact</h2>
+      <div class="description">
+        <p>Under Mahantesh's guidance, Perfect Technologies has developed comprehensive capabilities spanning:</p>
+        <ul>
+          <li>In-house mold design and development</li>
+          <li>Precision plastic injection molding</li>
+          <li>High-accuracy CNC machining</li>
+          <li>Advanced 4-axis and 5-axis manufacturing</li>
+          <li>Smart factory integration</li>
+        </ul>
+        
+        <p>The company's investment in <strong>Citizen, Tsugumi, and Mazak</strong> machinery combined with cutting-edge software like <strong>ESPRIT, WorkNC, and AutoCAD</strong> enables production of complex, high-tolerance components with unmatched efficiency.</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years of Industry Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Satisfied Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Patents & Innovations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">99.7%</div>
+          <div class="stat-label">Quality Assurance Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Strategic Approach</h2>
+      <div class="description">
+        <p><strong>Industry Challenges & Solutions:</strong></p>
+        <ul>
+          <li><strong>Material Price Fluctuations:</strong> Addressed through optimized material utilization, strategic supplier partnerships, and lean manufacturing</li>
+          <li><strong>Skilled Labor Shortage:</strong> Tackled via technical institute collaborations, continuous training programs, and clear career progression paths</li>
+          <li><strong>Technology Evolution:</strong> Ongoing upgrades with advanced CNC machinery and automation integration</li>
+          <li><strong>Supply Chain Resilience:</strong> Mitigated through diversified sourcing strategies and intelligent inventory systems</li>
+        </ul>
+
+        <p><strong>Quality Commitment:</strong> Perfect Technologies maintains <strong>strict quality control</strong> through advanced inspection systems, real-time monitoring, and data-driven process optimization to ensure minimal defects and timely deliveries.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Featured In</h2>
+      <div class="magazines">
+        <div class="magazine">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="CEO Insights Magazine" />
+          <div class="magazine-title">CEO Insights Magazine</div>
+          <div class="magazine-date">Featured Interview - June 2024</div>
+        </div>
+        <div class="magazine">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Top 10 Leaders" />
+          <div class="magazine-title">Top 10 Leaders in Plastics Manufacturing</div>
+          <div class="magazine-date">Cover Story - January 2025</div>
+        </div>
+        <div class="magazine">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Trailblazers" />
+          <div class="magazine-title">Tech Trailblazers India</div>
+          <div class="magazine-date">Innovation Spotlight - March 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Personal Insights</h2>
+      <div class="personal-insights">
+        <div class="insight-card">
+          <div class="insight-icon">♟️</div>
+          <div class="insight-label">Hobbies</div>
+          <div class="insight-value">Reading, Chess</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🍛</div>
+          <div class="insight-label">Favorite Cuisine</div>
+          <div class="insight-value">Indian</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">📖</div>
+          <div class="insight-label">Favorite Book</div>
+          <div class="insight-value">The Bhagavad Gita</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🏆</div>
+          <div class="insight-label">Awards</div>
+          <div class="insight-value">Best Supplier Awards</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Future Vision</h2>
+      <div class="description">
+        <p>Mahantesh envisions Perfect Technologies as a <strong>global leader</strong> in sustainable manufacturing solutions, with particular focus on:</p>
+        <ul>
+          <li>Expansion into <strong>EV component manufacturing</strong></li>
+          <li>Development of <strong>biodegradable plastic alternatives</strong></li>
+          <li>Implementation of <strong>Industry 4.0 technologies</strong> across operations</li>
+          <li>Strategic partnerships with <strong>international automotive leaders</strong></li>
+        </ul>
+        <p>His leadership philosophy centers on <strong>empowering teams</strong> through continuous learning, fostering innovation, and maintaining uncompromising standards in quality and efficiency.</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Perfect Technologies. All Rights Reserved.</p>
+      <p>Connect with us: info@perfecttech.com | +91 9876543210</p>
+    </footer>
+  </div>
+
+  <script>
+    // Enhanced 3D effects
+    document.querySelectorAll('.magazine, .stat-card, .insight-card').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        card.style.boxShadow = `${-angleY*2}px ${angleX*2}px 30px rgba(0,0,0,0.3)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+      });
+    });
+
+    // Founder card 3D effect
+    const founderCard = document.querySelector('.founder-card');
+    founderCard.addEventListener('mousemove', (e) => {
+      const rect = founderCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const angleX = (y - centerY) / 15;
+      const angleY = (centerX - x) / 15;
+      
+      founderCard.querySelector('.founder-photo').style.transform = `rotateY(${angleY}deg) rotateX(${angleX}deg) scale(1.05)`;
+    });
+
+    founderCard.addEventListener('mouseleave', () => {
+      founderCard.querySelector('.founder-photo').style.transform = 'rotateY(0) rotateX(0) scale(1)';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+   header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* ensures it stays above everything else */
+}
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo img {
+      width: 240px;
+      height: 48px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .quote-btn {
+      background-color: #ffd700;
+      color: #000;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .quote-btn:hover {
+      transform: scale(1.05);
+      background-color: #fff9d1;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #ffd700;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .quote-btn {
+        align-self: flex-start;
+      }
+
+      .logo img {
+        width: 180px;
+        height: auto;
+      }
+    }
+
+    .about-section, .founder-section {
+      text-align: justify;
+      margin: 5rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards, floatIn 3s ease-out forwards;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(145deg, #1a1a1a, #000);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+      padding: 2rem;
+      border-radius: 20px;
+    }
+
+    .about-section h1, .founder-section h2 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.2);
+    }
+
+    .about-section p, .founder-section p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: #ddd;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .read-more {
+      color: #ffd700;
+      text-decoration: underline;
+      font-style: normal;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatIn {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+       /* Base Styles - Industrial Black & Gold */
+    :root {
+      --gold: #FFD700;
+      --gold-dark: #FFA500;
+      --black: #121212;
+      --black-light: #1e1e1e;
+      --black-lighter: #2a2a2a;
+      --text: #e6e6e6;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--black);
+      padding: 2rem;
+      perspective: 1000px;
+    }
+    
+    h1 {
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      font-size: 2.5rem;
+    }
+    
+    .timeline-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 100px;
+    }
+    
+    /* 3D Timeline Line */
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 100px;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      transform-style: preserve-3d;
+      transform: translateZ(10px);
+    }
+    
+    /* Timeline Items with 3D Depth */
+    .timeline-item {
+      display: flex;
+      margin-bottom: 3rem;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    
+    .timeline-year {
+      font-weight: 700;
+      color: var(--gold);
+      width: 100px;
+      text-align: right;
+      padding-right: 2rem;
+      position: absolute;
+      left: -100px;
+      transform: translateZ(20px);
+    }
+    
+    .timeline-year::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+      transform: translateZ(15px);
+    }
+    
+    .timeline-content {
+      flex: 1;
+      background: var(--black-light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-left: 3px solid var(--gold);
+      transform-style: preserve-3d;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateZ(0);
+    }
+    
+    /* 3D Hover Effects */
+    .timeline-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .timeline-item:hover .timeline-content {
+      transform: 
+        translateZ(20px) 
+        rotateX(5deg) 
+        rotateY(5deg);
+      box-shadow: 
+        0 15px 40px rgba(0,0,0,0.6),
+        0 0 30px rgba(255, 215, 0, 0.3);
+      border-left: 3px solid var(--gold-dark);
+    }
+    
+    .timeline-item:hover .timeline-year::after {
+      transform: translateZ(25px) scale(1.1);
+      box-shadow: 0 0 25px var(--gold);
+    }
+    
+    .timeline-content h4 {
+      margin-top: 0;
+      color: var(--gold);
+      transform: translateZ(10px);
+    }
+    
+    .timeline-content ul {
+      padding-left: 1.2rem;
+      color: var(--text);
+      transform: translateZ(5px);
+    }
+    
+    .timeline-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .timeline-content li::before {
+      content: '•';
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Highlight Card - Enhanced 3D */
+    .highlight .timeline-content {
+      background: var(--black-lighter);
+      border-left: 3px solid var(--gold-dark);
+    }
+    
+    .highlight:hover .timeline-content {
+      transform: 
+        translateZ(25px) 
+        rotateX(7deg) 
+        rotateY(7deg);
+    }
+    
+    .testimonial {
+      font-style: italic;
+      background: rgba(255, 215, 0, 0.1);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      display: block;
+      border-left: 2px solid var(--gold);
+      transform: translateZ(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover .testimonial {
+      transform: translateZ(30px);
+      background: rgba(255, 215, 0, 0.15);
+    }
+    
+    .testimonial span {
+      font-weight: bold;
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--gold-dark);
+    }
+    
+    /* 3D Future Card */
+    .future-card {
+      background: linear-gradient(135deg, var(--black-light), var(--black-lighter));
+      color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      max-width: 700px;
+      margin-left: 150px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      transform: translateZ(10px);
+    }
+    
+    .future-card:hover {
+      transform: 
+        translateZ(30px) 
+        rotateX(5deg);
+      box-shadow: 
+        0 20px 50px rgba(0,0,0,0.7),
+        0 0 40px rgba(255, 215, 0, 0.4);
+    }
+    
+    .future-card h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: var(--gold);
+      transform: translateZ(15px);
+    }
+    
+    .future-card ul {
+      color: var(--text);
+      transform: translateZ(10px);
+    }
+    
+    /* Icons with Depth */
+    .timeline-icon {
+      float: left;
+      font-size: 1.8rem;
+      margin-right: 1rem;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      transform: translateZ(15px);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover .timeline-icon {
+      transform: translateZ(25px) scale(1.2);
+      text-shadow: 0 0 15px var(--gold);
+    }
+
+            :root {
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --black: #121212;
+            --black-light: #1e1e1e;
+            --black-lighter: #2a2a2a;
+            --text: #e6e6e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .vision-mission-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--gold);
+            margin-top: 80px; /* Added to account for fixed header */
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .header-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Vision & Mission Cards */
+        .vm-section {
+            padding: 5rem 0;
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            perspective: 1000px;
+        }
+
+        .vm-card {
+            background: var(--black-light);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-top: 5px solid var(--gold);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 50%);
+            z-index: -1;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.2);
+        }
+
+        .vm-card h2 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vm-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .vm-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-card {
+            border-top-color: var(--gold-dark);
+        }
+
+        .mission-card {
+            border-top-color: var(--gold);
+        }
+
+        /* Floating Elements */
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .vm-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .vm-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Our Clients Section */
+    .clients-section {
+      background-color: #000;
+      padding: 3rem 0;
+      overflow: hidden;
+      border-top: 2px solid #ffd700;
+      border-bottom: 2px solid #ffd700;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .clients-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .clients-slider {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 65s linear infinite;
+      gap: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .client-logo {
+      width: 150px;
+      height: 90px;
+      background-color: #222;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+      transform: rotateY(8deg);
+      transition: transform 0.5s;
+    }
+
+    .client-logo img {
+      max-width: 90%;
+      max-height: 90%;
+      filter: grayscale(100%);
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .client-logo:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.08);
+    }
+
+    @keyframes scroll-left {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #111;
+      color: #aaa;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.webp" alt="Perfect Technologies Logo">
+      </div>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="#">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+        <button class="quote-btn">Get a Quote</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- About Us Section -->
+  <section class="about-section">
+    <h1>About Us</h1>
+    <p><strong>Perfect Technologies</strong> is a precision engineering solutions provider specializing in advanced tool manufacturing and high-tolerance component production. Established in 2011 and TÜV-certified to ISO 9001:2015 standards, we combine cutting-edge CNC machining with proprietary tooling expertise to deliver mission-critical components for automotive, aerospace, and industrial sectors. Our 6,000 sq. ft. automated facility integrates Industry 4.0 technologies including cloud-based ERP systems and AI-driven quality control. Recognized for engineering excellence, we enable clients to achieve superior product performance through innovative DFM solutions and lean manufacturing practices. With a growing global clientele, we continue to push manufacturing boundaries through continuous R&D investment and strategic technology partnerships. Perfect Technologies redefines precision manufacturing through uncompromising quality, technical innovation, and operational excellence.</p>
+  </section>
+
+  <!-- Meet the Founder Section -->
+  <section class="founder-section">
+    <h2>Meet the Founder</h2>
+    <p>With a vision to transform India's precision engineering landscape, our founder brings over two decades of expertise in high-tech manufacturing. A pioneer in CNC and DFM innovation, they established Perfect Technologies to bridge the gap between design intent and production capability. Their relentless commitment to quality, automation, and R&D has positioned the company as a global leader in mission-critical components. Under their leadership, Perfect Technologies embodies a culture of excellence, adaptability, and technological advancement. <a class="read-more" href="founder.html">Read more...</a></p>
+  </section>
+
+  <!-- Our Journey Section -->
+  <section>
+    <h1>Our Journey of Precision & Growth</h1>
+    
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-year">2011</div>
+        <div class="timeline-content">
+          <span class="timeline-icon">⚙️</span>
+          <h4>Foundation Laid</h4>
+          <ul>
+            <li>Precision tool room established</li>
+            <li>3 injection molding machines commissioned</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item highlight">
+        <div class="timeline-year">2014-2019</div>
+        <div class="timeline-content">
+          <span class="timeline-icon">📜</span>
+          <h4>Quality Revolution</h4>
+          <ul>
+            <li><strong>2014:</strong> First ISO 9001 certification (TÜV)</li>
+            <li><strong>2019:</strong> Upgraded to ISO 9001:2015</li>
+            <li class="testimonial">"Their certified processes reduced our defects by 40%" <span>- Automotive Client</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2020-2022</div>
+        <div class="timeline-content">
+          <span class="timeline-icon">🤖</span>
+          <h4>Digital Transformation</h4>
+          <ul>
+            <li>Cloud ERP implementation (2021)</li>
+            <li>CNC automation expansion (2022)</li>
+            <li>IATF 16949:2016 certification underway</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="future-card">
+      <h3>2023 & Beyond</h3>
+      <p>Implementing Industry 4.0 solutions including:</p>
+      <ul>
+        <li>AI-powered predictive maintenance</li>
+        <li>Smart factory integration</li>
+        <li>Sustainable manufacturing initiatives</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Our Guiding Principles Section -->
+  <header class="vision-mission-header">
+    <div class="header-content container">
+      <div>
+        <h1>Our Guiding Principles</h1>
+        <p>The foundation of Perfect Technologies' excellence in precision manufacturing</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Vision & Mission Section -->
+  <section class="vm-section container">
+    <div class="vm-grid">
+      <!-- Vision Card -->
+      <div class="vm-card vision-card" id="visionCard">
+        <i class="fas fa-bullseye floating-icon" style="top: 20%; right: 15%; font-size: 3rem;"></i>
+        <i class="fas fa-rocket floating-icon" style="bottom: 30%; left: 10%; font-size: 2.5rem;"></i>
+        
+        <h2>Our Vision</h2>
+        <p>Through the exceptional achievements of our dedicated team, we are committed to maintaining our position as the foremost provider of rapid plastics manufacturing solutions. We continuously strive to create meaningful impact in the professional development of our workforce, the prosperity of our communities, and the technological advancement of our industry partners.</p>
+        <p>Our vision extends beyond manufacturing excellence to fostering sustainable growth that benefits all stakeholders in our ecosystem.</p>
+      </div>
+
+      <!-- Mission Card -->
+      <div class="vm-card mission-card" id="missionCard">
+        <i class="fas fa-medal floating-icon" style="top: 15%; left: 20%; font-size: 2.8rem;"></i>
+        <i class="fas fa-tachometer-alt floating-icon" style="bottom: 25%; right: 15%; font-size: 3rem;"></i>
+        
+        <h2>Our Mission</h2>
+        <p>To consistently surpass customer expectations through the delivery of rapid, reliable, and superior manufacturing solutions that establish new industry benchmarks. We achieve this through:</p>
+        <ul style="list-style-type: none; margin-left: 1.5rem;">
+          <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px;"></i> Cutting-edge technological innovation</li>
+          <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px;"></i> Uncompromising quality standards</li>
+          <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px;"></i> Agile manufacturing processes</li>
+          <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px;"></i> Continuous operational excellence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="clients-section">
+    <h2>Our Clients</h2>
+    <div class="clients-slider">
+      <!-- Replace placeholders with actual client logos -->
+      <div class="client-logo"><img src="images/Our Clients/Minda.jpg" alt="Client 1" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Agrana fruit.png" alt="Client 2" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Ariston.png" alt="Client 3" /></div>
+      <div class="client-logo"><img src="images/Our Clients/BSA.png" alt="Client 4" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Dhoot transmission.jpg" alt="Client 5" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Harness.jpg" alt="Client 6" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Hitachi.png" alt="Client 7" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Kinetic logo.png" alt="Client 8" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Michigan manufacturing.png" alt="Client 9" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Mubea.png" alt="Client 10" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Rd Electronics.png" alt="Client 11" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Saket.png" alt="Client 12" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Tarsons.png" alt="Client 13" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Cleetek" alt="Client 14" /></div>
+      <div class="client-logo"><img src="images/Our Clients/" alt="Client 15" /></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    © 2025 Perfect Technologies. All rights reserved.
+  </div>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.timeline-item, .future-card').forEach(item => {
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        if(item.classList.contains('timeline-item')) {
+          item.querySelector('.timeline-content').style.transform = `
+            translateZ(20px)
+            rotateX(${angleX}deg)
+            rotateY(${angleY}deg)
+          `;
+        } else {
+          item.style.transform = `
+            translateZ(30px)
+            rotateX(${angleX/2}deg)
+            rotateY(${angleY/2}deg)
+          `;
+        }
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        if(item.classList.contains('timeline-item')) {
+          item.querySelector('.timeline-content').style.transform = 'translateZ(20px) rotateX(5deg) rotateY(5deg)';
+        } else {
+          item.style.transform = 'translateZ(30px)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.vm-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        card.style.transform = `
+          translateY(-10px)
+          rotateX(${angleX}deg)
+          rotateY(${angleY}deg)
+        `;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(-10px) rotateX(5deg) rotateY(5deg)';
+      });
+    });
+
+    // Scroll Animation
+    const vmCards = document.querySelectorAll('.vm-card');
+    
+    const animateOnScroll = () => {
+      vmCards.forEach((card, index) => {
+        const cardPosition = card.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (cardPosition < screenPosition) {
+          card.style.transitionDelay = `${index * 0.2}s`;
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    // Set initial state
+    vmCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      card.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+    });
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>

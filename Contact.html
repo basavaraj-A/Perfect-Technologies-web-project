@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Perfect Technologies | Precision Manufacturing Solutions</title>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --black: #121212;
+            --black-light: #1e1e1e;
+            --black-lighter: #2a2a2a;
+            --text: #e6e6e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--black);
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0) 20%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .contact-card {
+            background: var(--black-light);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .contact-card h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            padding: 4rem 0;
+            background: var(--black-light);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--gold);
+            font-size: 2rem;
+        }
+
+        .industrial-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--black);
+            border: 1px solid #333;
+            color: var(--text);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gold-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 0;
+        }
+
+        .map-container {
+            height: 400px;
+            position: relative;
+            border: 3px solid var(--gold);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            border-left: 4px solid var(--gold);
+            z-index: 1;
+            max-width: 300px;
+        }
+
+        .map-overlay h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-overlay p {
+            margin-bottom: 1rem;
+        }
+
+        .directions-link {
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .directions-link:hover {
+            color: white;
+        }
+
+        /* Trust Signals */
+        .trust-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: var(--black-light);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .trust-badge {
+            background: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .client-logo {
+            height: 60px;
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        details {
+            background: var(--black-light);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        summary {
+            padding: 1rem;
+            color: var(--gold);
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            position: relative;
+        }
+
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        details p {
+            padding: 0 1rem 1rem;
+        }
+
+        /* CTA Footer */
+        .cta-footer {
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        .cta-footer h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            background: var(--black-light);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .map-overlay {
+                position: relative;
+                top: auto;
+                left: auto;
+                max-width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Hero Section -->
+    <header>
+        <div class="hero-content">
+            <h1>Precision Engineered Solutions Start Here</h1>
+            <p>Connect with our engineering team for mission-critical manufacturing</p>
+        </div>
+    </header>
+
+    <!-- Contact Methods -->
+    <section class="container">
+        <div class="contact-methods">
+            <div class="contact-card">
+                <h3><i class="fas fa-phone-alt contact-icon"></i> Sales</h3>
+                <p><strong>Email:</strong> sales@perfecttech.com</p>
+                <p><strong>Phone:</strong> +91 XXXX XXX XXX</p>
+                <p><strong>Hours:</strong> Mon-Fri, 9AM-6PM IST</p>
+            </div>
+            
+            <div class="contact-card">
+                <h3><i class="fas fa-tools contact-icon"></i> Support</h3>
+                <p><strong>Email:</strong> support@perfecttech.com</p>
+                <p><strong>Emergency:</strong> +91 XXXX XXX XXX</p>
+                <p><strong>24/7 Chat Support</strong></p>
+            </div>
+            
+            <div class="contact-card">
+                <h3><i class="fas fa-briefcase contact-icon"></i> Careers</h3>
+                <p><strong>Email:</strong> hr@perfecttech.com</p>
+                <p><strong>Phone:</strong> +91 XXXX XXX XXX</p>
+             <!--   <p><strong>View Open Positions</strong></p> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <h2 class="section-title">Request a Consultation</h2>
+            <form class="industrial-form">
+                <div class="form-group">
+                    <label>I need help with*</label>
+                    <select required>
+                        <option value="">Select a service</option>
+                        <option>Injection Molding</option>
+                        <option>CNC Machining</option>
+                        <option>Tool Design</option>
+                        <option>Precision Components</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Company Email*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Company Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea placeholder="Technical specifications/requirements..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Technical Drawings (Optional)</label>
+                    <input type="file">
+                </div>
+                
+                <button type="submit" class="gold-button">
+                    Request Engineering Consultation <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+       <!-- Map Section -->
+    <section class="map-section container">
+        <h2 class="section-title">Our Manufacturing Facility</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.231934456581!2d73.7664323153465!3d18.69283788732483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2a3f7784d5347%3A0x1d9f6a9f9a9f9a9f!2sGat%20No.%20169%2C%20Talwade%20Road%2C%20Rupee%20Nagar%2C%20Pune%2C%20Maharashtra%20411062!5e0!3m2!1sen!2sin!4v1629981323125!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"></iframe>
+            <div class="map-overlay">
+                <h4>Pune Manufacturing Facility</h4>
+                <p>
+                    Gat No. 169, Talwade Road<br>
+                    Rupee Nagar, Behind Saraswati English Medium School<br>
+                    Pune-411062, Maharashtra, India
+                </p>
+                <a href="https://maps.google.com/maps?q=Gat+No.+169,+Talwade+Road,+Rupee+Nagar,+Pune+411062" 
+                   target="_blank" 
+                   class="directions-link">
+                    <i class="fas fa-map-marked-alt"></i> Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title">Trusted By Industry Leaders</h2>
+            <p>ISO 9001:2015 Certified | All inquiries answered within 2 business hours</p>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-certificate" style="color: var(--gold);"></i> TÜV Certified
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt" style="color: var(--gold);"></i> Quality Guarantee
+                </div>
+            </div>
+            
+            <div class="client-logos">
+                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=BOSCH" alt="Bosch" class="client-logo">
+                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=HITACHI" alt="Hitachi" class="client-logo">
+                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=MINDA" alt="Minda" class="client-logo">
+                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=TVS" alt="TVS" class="client-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+            <details>
+                <summary>What file formats do you accept for quotes?</summary>
+                <p>We support all industry-standard formats including STEP, IGES, STL, DXF, and DWG files. For 2D drawings, PDFs with dimensions are preferred.</p>
+            </details>
+            
+            <details>
+                <summary>What is your typical lead time for production?</summary>
+                <p>Standard lead times range from 2-4 weeks depending on project complexity. Rush services are available for time-sensitive projects.</p>
+            </details>
+            
+            <details>
+                <summary>Do you handle international shipments?</summary>
+                <p>Yes, we regularly export to over 15 countries with full documentation support including commercial invoices, packing lists, and certificates of conformity.</p>
+            </details>
+            
+            <details>
+                <summary>What quality control measures do you have?</summary>
+                <p>Our TÜV-certified quality system includes in-process inspections, CMM verification, and final QA checks with full documentation traceability.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <section class="cta-footer">
+        <div class="container">
+            <h3>Need immediate technical assistance?</h3>
+            <p>Our engineering team is ready to support your critical manufacturing needs</p>
+            
+            <div class="cta-buttons">
+                <a href="tel:+91XXXXXXXXXX" class="cta-button">
+                    <i class="fas fa-phone-alt"></i> Call Our Production Hotline
+                </a>
+                <a href="mailto:qc@perfecttech.com" class="cta-button">
+                    <i class="fas fa-envelope"></i> Email Quality Control Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form submission handling
+        document.querySelector('.industrial-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Thank you for your inquiry! Our engineering team will contact you within 2 business hours.');
+            this.reset();
+        });
+
+        // Accordion animation
+        document.querySelectorAll('details').forEach((detail) => {
+            detail.addEventListener('toggle', function() {
+                if (this.open) {
+                    this.style.backgroundColor = 'rgba(255, 215, 0, 0.05)';
+                } else {
+                    this.style.backgroundColor = 'var(--black-light)';
+                }
+            });
+        });
+
+        // Animate contact cards on scroll
+        const animateOnScroll = () => {
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.transitionDelay = `${index * 0.1}s`;
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

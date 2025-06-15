@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #e5e5e5;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+    }
+
+   .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+
+    .logo img {
+      width: 240px;
+      height: 48px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .quote-btn {
+      background-color: #ffd700;
+      color: #000;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .quote-btn:hover {
+      transform: scale(1.05);
+      background-color: #fff9d1;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: 80vh;
+      width: 100%;
+    }
+
+    .hero-slider {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      height: 100%;
+      width: 300%;
+    }
+
+    .hero-item {
+      width: 100vw;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero-item img,
+    .hero-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) contrast(1.1);
+    }
+
+    .hero-item img {
+      height: 90vh;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-content img,
+    .modal-content video {
+      width: 100%;
+      height: auto;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .about-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background-color: #111111;
+      animation: fadeInUp 1s ease-out;
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
+    }
+
+    .about-section h1,
+    .about-section h2,
+    .about-section p,
+    .why-choose-us h2,
+    .why-choose-us p {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .about-section h1 {
+      font-size: 2.5rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-section h2 {
+      font-size: 1.5rem;
+      color: #e5e5e5;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-section p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .why-choose-us {
+      padding: 4rem 2rem;
+      background-color: #0d0d0d;
+      text-align: center;
+    }
+
+    .why-choose-us h2 {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+
+    .why-choose-us p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 2rem;
+    }
+
+    .scrolling-images {
+      display: flex;
+      gap: 2rem;
+      animation: scrollLeft 20s linear infinite;
+      width: fit-content;
+    }
+
+    .image-box {
+      min-width: 360px;
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .image-box:hover {
+      transform: scale(1.05);
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .image-box p {
+      margin-top: 0.5rem;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .quote-btn {
+        align-self: flex-start;
+      }
+
+      .logo img {
+        width: 180px;
+        height: auto;
+      }
+    }
+
+    .industries-served {
+  background-color: #111;
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.industries-served h2 {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.industries-served p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #ccc;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+.industry-gallery {
+  display: flex;
+  overflow: hidden;
+  width: 95vw;
+  height: 95vw;
+  max-height: 100vh;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: calc(100vw * 7); /* ensure all items fit horizontally */
+}
+
+.industry-item {
+  position: relative;
+  width: 100vw;
+  height: 100vw;
+  max-height: 100vh;
+  flex: 0 0 auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.industry-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.industry-item:hover img {
+  transform: scale(1.05);
+}
+
+.industry-caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  display: none;
+}
+
+.industry-item:hover .industry-caption {
+  display: block;
+}
+
+ body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    footer div {
+      margin-bottom: 2rem;
+      max-width: 250px;
+    }
+
+    footer h4 {
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin: 0.3rem 0;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .coin-images {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .coin-images img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 0%;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.webp
+        " alt="Perfect Technologies Logo">
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="service.html">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Gallery</a>
+        <a href="Contact.html">Contact</a>
+        <button class="quote-btn">Get a Quote</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-slider" id="hero-slider">
+      <div class="hero-item" onclick="openModal('img1')">
+        <img src="https://source.unsplash.com/random/800x600?luxury,tech" alt="Hero Image 1">
+      </div>
+      <div class="hero-item" onclick="openModal('img2')">
+        <img src="https://source.unsplash.com/random/801x600?innovation,machinery" alt="Hero Image 2">
+      </div>
+      <div class="hero-item" onclick="openModal('video1')">
+        <video muted autoplay loop>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
+  <section class="about-section">
+    <h1>Perfect Technologies</h1>
+    <h2>Ideas for Today and Tomorrow</h2>
+    <p>
+      Established in 2011 by Mr. Mahantesh Jakati, a distinguished Mechanical Engineer with specialized expertise in Tool Manufacturing,
+      Perfect Technologies stands as a benchmark of precision and innovation in the engineering sector.
+      <br><br>
+      As a TÜV EN ISO 9001:2015 Certified Company, we operate from a 6,000 sq. ft. fully automated facility, equipped with a state-of-the-art Tool Room.
+      Our advanced infrastructure enables us to deliver high-precision machined components tailored to diverse industrial applications,
+      ensuring unmatched quality, efficiency, and reliability.
+      <br><br>
+      Driven by engineering excellence and a commitment to perfection, we serve as a trusted partner for industries demanding precision,
+      durability, and cutting-edge manufacturing solutions.
+    </p>
+  </section>
+
+  <section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <p>The distinguishing attributes that have earned us international acclaim from a global clientele include:</p>
+    <div class="scrolling-images">
+      <div class="image-box">
+        <img src="images/WCU/Feature 1.jpg" alt="Feature 1">
+        <p>An exceptional workplace that fosters technical innovation and drives professional growth.</p>
+      </div>
+      <div class="image-box">
+        <img src="images/WCU/Feature 2.jpg" alt="Feature 2">
+        <p>Comprising top-tier engineers, creative industrial designers, and a results-driven support team, we deliver unparalleled solutions.</p>
+      </div>
+      <div class="image-box">
+        <img src="images/WCU/Feature 3.jpg" alt="Feature 3">
+        <p>Fostering an optimal ecosystem for successful business operations.</p>
+      </div>
+      <div class="image-box">
+        <img src="images/WCU/Feature 4.jpg" alt="Feature 4">
+        <p>Dedicated to upholding the highest ethical standards while safeguarding our planet.</p>
+      </div>
+      <div class="image-box">
+        <img src="images/WCU/feature 5.jpg" alt="Feature 5">
+        <p>A state-of-the-art manufacturing facility with comprehensive operational capabilities.</p>
+      </div>
+      <div class="image-box">
+        <img src="images/WCU/Feature 6.jpg" alt="Feature 6">
+        <p>The independent Quality Control Unit drives excellence, producing superior quality benchmarks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="industries-served">
+  <h2>Industries We Served</h2>
+  <p>Setting the global benchmark in precision manufacturing, we craft engineered solutions that redefine industry standards through cutting-edge technology and flawless execution.</p>
+  <div class="carousel-container">
+    <div class="industry-gallery">
+      <div class="carousel-inner" id="carousel">
+        <div class="industry-item">
+          <img src="images/IWS/industry 1.jpg" alt="Industry 1">
+          <div class="industry-caption">Automotive Parts and Industries</div>
+        </div>
+        <div class="industry-item">
+          <img src="images/IWS/industry 2.jpg" alt="Industry 2">
+          <div class="industry-caption">Export Unit / Valve Industries</div>
+        </div>
+        <div class="industry-item">
+          <img src="images/IWS/industry 3.jpg" alt="Industry 3">
+          <div class="industry-caption">Food Industries</div>
+        </div>
+        <div class="industry-item">
+          <img src="images/IWS/industry 4.jpg" alt="Industry 4">
+          <div class="industry-caption">Tool Room</div>
+        </div>
+        <!--
+        <div class="industry-item">
+          <img src="https://source.unsplash.com/random/1200x800?industry5" alt="Industry 5">
+          <div class="industry-caption">Lorem ipsum</div>
+        </div>
+        <div class="industry-item">
+          <img src="https://source.unsplash.com/random/1200x800?industry6" alt="Industry 6">
+          <div class="industry-caption">Lorem ipsum</div>
+        </div>
+        <div class="industry-item">
+          <img src="https://source.unsplash.com/random/1200x800?industry7" alt="Industry 7">
+          <div class="industry-caption">Lorem ipsum</div>
+        </div>
+      -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div>
+      <h4>About Our Company</h4>
+      <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+      <div class="coin-images">
+        <img src= images/ISO-9001-Certified-Company.png alt="Coin Image 1" />
+        <img src="images/zed.webp" alt="Coin Image 2" />
+      </div>
+    </div>
+    <div>
+      <h4>Talk to Our Officers</h4>
+      <p>+91 902 141 9645</p>
+      <p>+91 955 284 0033</p>
+    </div>
+    <div>
+      <h4>Our Solutions</h4>
+      <a href="#">Automotive Parts and Industries</a>
+      <a href="#">Export Unit / Valve Industries</a>
+      <a href="#">Agriculture and Food Industries</a>
+      <a href="#">Tool Room</a>
+    </div>
+    <div>
+      <h4>Useful Links</h4>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Services</a>
+      <a href="#">Products</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Locate Us</a>
+    </div>
+  </footer>
+
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+
+    function openModal(type) {
+      let content = '';
+      if (type === 'img1') {
+        content = '<img src="https://source.unsplash.com/random/800x600?luxury,tech" alt="Expanded Image 1">';
+      } else if (type === 'img2') {
+        content = '<img src="https://source.unsplash.com/random/801x600?innovation,machinery" alt="Expanded Image 2">';
+      } else if (type === 'video1') {
+        content = '<video controls autoplay><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>';
+      }
+      modalContent.innerHTML = content;
+      modal.classList.add('active');
+    }
+
+    modal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    let slideIndex = 0;
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % 3;
+      document.getElementById('hero-slider').style.transform = `translateX(-${slideIndex * 100}vw)`;
+    }, 3000);
+
+    let currentIndex = 0;
+const carousel = document.getElementById('carousel');
+const items = document.querySelectorAll('.industry-item');
+const totalItems = items.length;
+
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % totalItems;
+  carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
+}, 3000);
+  </script>
+</body>
+</html>

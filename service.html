@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Perfect Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700; /* Yellow */
+            --secondary: #000000; /* Black */
+            --text-light: #f8f8f8;
+            --text-dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text-light);
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+        
+        .logo img {
+            width: 240px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+        
+        .quote-btn {
+            background-color: #ffd700;
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .quote-btn:hover {
+            transform: scale(1.05);
+            background-color: #fff9d1;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .services-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .services-header h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .services-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) perspective(1000px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .service-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        footer {
+            background-color: #111;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        footer div {
+            margin-bottom: 2rem;
+            max-width: 250px;
+        }
+        
+        footer h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin: 0.3rem 0;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: #fff;
+        }
+        
+        .coin-images {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .coin-images img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 0%;
+            border: 1px solid #444;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .service-card {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .services-header h1 {
+                font-size: 2rem;
+            }
+            
+            .service-img {
+                height: 180px;
+            }
+            
+            footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            footer div {
+                max-width: 100%;
+            }
+            
+            .coin-images {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .quote-btn {
+                align-self: flex-start;
+            }
+            
+            .logo img {
+                width: 180px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.webp" alt="Perfect Technologies Logo">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="service.html" class="active">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Gallery</a>
+                <a href="Contact.html">Contact</a>
+                <button class="quote-btn">Get a Quote</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="services-container">
+        <div class="services-header">
+            <h1>Our Premium Services</h1>
+            <p>We deliver excellence through our comprehensive range of specialized services designed to meet your unique needs and exceed expectations.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Design Service" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">Design</h3>
+                    <p class="service-desc">Innovative design solutions tailored to your specifications. Our team creates functional and aesthetic designs that stand out.</p>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1455165814004-1126a7199f9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Manufacturing and Tool Room" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">Manufacturing & Tool Room</h3>
+                    <p class="service-desc">Precision manufacturing with state-of-the-art equipment. Our tool room ensures quality components every time.</p>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581093057305-25adf111a7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Testing Service" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">Testing</h3>
+                    <p class="service-desc">Rigorous quality testing protocols to ensure reliability and performance. We leave nothing to chance.</p>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Export Service" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">Export</h3>
+                    <p class="service-desc">Global logistics solutions to get your products where they need to be, when they need to be there.</p>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Technical Consultancy" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">Technical Consultancy</h3>
+                    <p class="service-desc">Expert advice from industry professionals to guide your technical decisions and optimize operations.</p>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="24/7 Support" class="service-img">
+                <div class="service-content">
+                    <h3 class="service-title">24/7 Support</h3>
+                    <p class="service-desc">Round-the-clock assistance to ensure your operations never stop. Our team is always ready to help.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <h4>About Our Company</h4>
+            <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+            <div class="coin-images">
+                <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified">
+                <img src="images/zed.webp" alt="ZED Certification">
+            </div>
+        </div>
+        <div>
+            <h4>Talk to Our Officers</h4>
+            <p>+91 902 141 9645</p>
+            <p>+91 955 284 0033</p>
+        </div>
+        <div>
+            <h4>Our Solutions</h4>
+            <a href="#">Automotive Parts and Industries</a>
+            <a href="#">Export Unit / Valve Industries</a>
+            <a href="#">Agriculture and Food Industries</a>
+            <a href="#">Tool Room</a>
+        </div>
+        <div>
+            <h4>Useful Links</h4>
+            <a href="index.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Products</a>
+            <a href="#">Gallery</a>
+            <a href="Contact.html">Contact Us</a>
+            <a href="#">Locate Us</a>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger when scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+        <div style="text-align: center; width: 100%; padding: 10px; background-color: #111; color: #ccc; font-size: 0.9rem;">
+        2025 &copy; All Rights Reserved - Perfect Technologies
+    </div>
+</body>
+</html>
+</body>
+</html>
