@@ -13,9 +13,15 @@
       font-family: 'Montserrat', sans-serif;
     }
 
+    html, body {
+      overflow-x: hidden; /* Prevent horizontal overflow */
+      width: 100%;
+    }
+
     body {
       background-color: #0a0a0a;
       color: #e5e5e5;
+      position: relative;
     }
 
     header {
@@ -24,15 +30,14 @@
       box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
     }
 
-   .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  flex-wrap: wrap;
-}
-
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
 
     .logo img {
       width: 240px;
@@ -93,7 +98,7 @@
     }
 
     .hero-item {
-      width: 100vw;
+      width: 100%;
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
@@ -180,6 +185,7 @@
       padding: 4rem 2rem;
       background-color: #0d0d0d;
       text-align: center;
+      overflow: hidden;
     }
 
     .why-choose-us h2 {
@@ -194,11 +200,17 @@
       margin-bottom: 2rem;
     }
 
+    .scrolling-images-container {
+      width: 100%;
+      overflow: hidden;
+    }
+
     .scrolling-images {
       display: flex;
       gap: 2rem;
       animation: scrollLeft 20s linear infinite;
-      width: fit-content;
+      width: max-content;
+      padding: 0 2rem;
     }
 
     .image-box {
@@ -243,113 +255,76 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
-        margin-top: 1rem;
-      }
-
-      .quote-btn {
-        align-self: flex-start;
-      }
-
-      .logo img {
-        width: 180px;
-        height: auto;
-      }
+    .industries-served {
+      background-color: #111;
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
     }
 
-    .industries-served {
-  background-color: #111;
-  color: #fff;
-  padding: 4rem 2rem;
-  text-align: center;
-}
+    .industries-served h2 {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
 
-.industries-served h2 {
-  font-size: 2rem;
-  color: #ffd700;
-  margin-bottom: 1rem;
-}
+    .industries-served p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: #ccc;
+    }
 
-.industries-served p {
-  font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  color: #ccc;
-}
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
 
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 100vw;
-  margin: 0 auto;
-}
+    .industry-gallery {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      height: 500px;
+    }
 
-.industry-gallery {
-  display: flex;
-  overflow: hidden;
-  width: 95vw;
-  height: 95vw;
-  max-height: 100vh;
-}
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      height: 100%;
+    }
 
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: calc(100vw * 7); /* ensure all items fit horizontally */
-}
+    .industry-item {
+      min-width: 100%;
+      height: 100%;
+      flex: 0 0 auto;
+      position: relative;
+    }
 
-.industry-item {
-  position: relative;
-  width: 100vw;
-  height: 100vw;
-  max-height: 100vh;
-  flex: 0 0 auto;
-  border-radius: 0;
-  box-shadow: none;
-}
+    .industry-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
 
-.industry-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
+    .industry-item:hover img {
+      transform: scale(1.05);
+    }
 
-.industry-item:hover img {
-  transform: scale(1.05);
-}
-
-.industry-caption {
-  position: absolute;
-  bottom: 0;
-  background: rgba(0,0,0,0.7);
-  width: 100%;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1rem;
-  display: none;
-}
-
-.industry-item:hover .industry-caption {
-  display: block;
-}
-
- body {
-      margin: 0;
-      font-family: 'DM Sans', sans-serif;
-      background-color: #000;
+    .industry-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
       color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1rem;
     }
 
     footer {
@@ -387,6 +362,7 @@
       display: flex;
       gap: 0.5rem;
       margin-top: 1rem;
+      justify-content: center;
     }
 
     .coin-images img {
@@ -396,16 +372,219 @@
       border-radius: 0%;
       border: 1px solid #444;
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 1024px) {
+      .hero {
+        height: 60vh;
+      }
+      
+      .hero-item img {
+        height: 60vh;
+      }
+      
+      .about-section h1 {
+        font-size: 2rem;
+      }
+      
+      .about-section h2 {
+        font-size: 1.3rem;
+      }
+      
+      .why-choose-us h2 {
+        font-size: 1.8rem;
+      }
+      
+      .industries-served h2 {
+        font-size: 1.8rem;
+      }
+      
+      .industry-gallery {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .quote-btn {
+        margin-top: 1rem;
+      }
+
+      .logo img {
+        width: 180px;
+        height: auto;
+      }
+      
+      .hero {
+        height: 50vh;
+      }
+      
+      .hero-item img {
+        height: 50vh;
+      }
+      
+      .about-section {
+        padding: 3rem 1.5rem;
+      }
+      
+      .about-section h1 {
+        font-size: 1.8rem;
+      }
+      
+      .about-section h2 {
+        font-size: 1.2rem;
+      }
+      
+      .about-section p {
+        font-size: 1rem;
+      }
+      
+      .why-choose-us {
+        padding: 3rem 1.5rem;
+      }
+      
+      .why-choose-us h2 {
+        font-size: 1.6rem;
+      }
+      
+      .why-choose-us p {
+        font-size: 1rem;
+      }
+      
+      .image-box {
+        min-width: 280px;
+      }
+      
+      .image-box img {
+        height: 350px;
+      }
+      
+      .industries-served {
+        padding: 3rem 1.5rem;
+      }
+      
+      .industries-served h2 {
+        font-size: 1.6rem;
+      }
+      
+      .industries-served p {
+        font-size: 1rem;
+      }
+      
+      .industry-gallery {
+        height: 300px;
+      }
+      
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      
+      footer div {
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .coin-images {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        height: 40vh;
+      }
+      
+      .hero-item img {
+        height: 40vh;
+      }
+      
+      .about-section {
+        padding: 2rem 1rem;
+      }
+      
+      .about-section h1 {
+        font-size: 1.5rem;
+      }
+      
+      .about-section p {
+        font-size: 0.9rem;
+      }
+      
+      .why-choose-us {
+        padding: 2rem 1rem;
+      }
+      
+      .image-box {
+        min-width: 240px;
+      }
+      
+      .image-box img {
+        height: 300px;
+      }
+      
+      .industries-served {
+        padding: 2rem 1rem;
+      }
+      
+      .industry-gallery {
+        height: 250px;
+      }
+      
+      .coin-images img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffd700;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
       <div class="logo">
-        <img src="images/logo.webp
-        " alt="Perfect Technologies Logo">
+        <img src="images/logo.webp" alt="Perfect Technologies Logo">
       </div>
-      <div class="nav-links">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="About.html">About Us</a>
         <a href="service.html">Services</a>
@@ -456,81 +635,69 @@
   <section class="why-choose-us">
     <h2>Why Choose Us?</h2>
     <p>The distinguishing attributes that have earned us international acclaim from a global clientele include:</p>
-    <div class="scrolling-images">
-      <div class="image-box">
-        <img src="images/WCU/Feature 1.jpg" alt="Feature 1">
-        <p>An exceptional workplace that fosters technical innovation and drives professional growth.</p>
-      </div>
-      <div class="image-box">
-        <img src="images/WCU/Feature 2.jpg" alt="Feature 2">
-        <p>Comprising top-tier engineers, creative industrial designers, and a results-driven support team, we deliver unparalleled solutions.</p>
-      </div>
-      <div class="image-box">
-        <img src="images/WCU/Feature 3.jpg" alt="Feature 3">
-        <p>Fostering an optimal ecosystem for successful business operations.</p>
-      </div>
-      <div class="image-box">
-        <img src="images/WCU/Feature 4.jpg" alt="Feature 4">
-        <p>Dedicated to upholding the highest ethical standards while safeguarding our planet.</p>
-      </div>
-      <div class="image-box">
-        <img src="images/WCU/feature 5.jpg" alt="Feature 5">
-        <p>A state-of-the-art manufacturing facility with comprehensive operational capabilities.</p>
-      </div>
-      <div class="image-box">
-        <img src="images/WCU/Feature 6.jpg" alt="Feature 6">
-        <p>The independent Quality Control Unit drives excellence, producing superior quality benchmarks.</p>
+    <div class="scrolling-images-container">
+      <div class="scrolling-images">
+        <div class="image-box">
+          <img src="images/WCU/Feature 1.jpg" alt="Feature 1">
+          <p>An exceptional workplace that fosters technical innovation and drives professional growth.</p>
+        </div>
+        <div class="image-box">
+          <img src="images/WCU/Feature 2.jpg" alt="Feature 2">
+          <p>Comprising top-tier engineers, creative industrial designers, and a results-driven support team, we deliver unparalleled solutions.</p>
+        </div>
+        <div class="image-box">
+          <img src="images/WCU/Feature 3.jpg" alt="Feature 3">
+          <p>Fostering an optimal ecosystem for successful business operations.</p>
+        </div>
+        <div class="image-box">
+          <img src="images/WCU/Feature 4.jpg" alt="Feature 4">
+          <p>Dedicated to upholding the highest ethical standards while safeguarding our planet.</p>
+        </div>
+        <div class="image-box">
+          <img src="images/WCU/feature 5.jpg" alt="Feature 5">
+          <p>A state-of-the-art manufacturing facility with comprehensive operational capabilities.</p>
+        </div>
+        <div class="image-box">
+          <img src="images/WCU/Feature 6.jpg" alt="Feature 6">
+          <p>The independent Quality Control Unit drives excellence, producing superior quality benchmarks.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="industries-served">
-  <h2>Industries We Served</h2>
-  <p>Setting the global benchmark in precision manufacturing, we craft engineered solutions that redefine industry standards through cutting-edge technology and flawless execution.</p>
-  <div class="carousel-container">
-    <div class="industry-gallery">
-      <div class="carousel-inner" id="carousel">
-        <div class="industry-item">
-          <img src="images/IWS/industry 1.jpg" alt="Industry 1">
-          <div class="industry-caption">Automotive Parts and Industries</div>
+    <h2>Industries We Served</h2>
+    <p>Setting the global benchmark in precision manufacturing, we craft engineered solutions that redefine industry standards through cutting-edge technology and flawless execution.</p>
+    <div class="carousel-container">
+      <div class="industry-gallery">
+        <div class="carousel-inner" id="carousel">
+          <div class="industry-item">
+            <img src="images/IWS/industry 1.jpg" alt="Industry 1">
+            <div class="industry-caption">Automotive Parts and Industries</div>
+          </div>
+          <div class="industry-item">
+            <img src="images/IWS/industry 2.jpg" alt="Industry 2">
+            <div class="industry-caption">Export Unit / Valve Industries</div>
+          </div>
+          <div class="industry-item">
+            <img src="images/IWS/industry 3.jpg" alt="Industry 3">
+            <div class="industry-caption">Food Industries</div>
+          </div>
+          <div class="industry-item">
+            <img src="images/IWS/industry 4.jpg" alt="Industry 4">
+            <div class="industry-caption">Tool Room</div>
+          </div>
         </div>
-        <div class="industry-item">
-          <img src="images/IWS/industry 2.jpg" alt="Industry 2">
-          <div class="industry-caption">Export Unit / Valve Industries</div>
-        </div>
-        <div class="industry-item">
-          <img src="images/IWS/industry 3.jpg" alt="Industry 3">
-          <div class="industry-caption">Food Industries</div>
-        </div>
-        <div class="industry-item">
-          <img src="images/IWS/industry 4.jpg" alt="Industry 4">
-          <div class="industry-caption">Tool Room</div>
-        </div>
-        <!--
-        <div class="industry-item">
-          <img src="https://source.unsplash.com/random/1200x800?industry5" alt="Industry 5">
-          <div class="industry-caption">Lorem ipsum</div>
-        </div>
-        <div class="industry-item">
-          <img src="https://source.unsplash.com/random/1200x800?industry6" alt="Industry 6">
-          <div class="industry-caption">Lorem ipsum</div>
-        </div>
-        <div class="industry-item">
-          <img src="https://source.unsplash.com/random/1200x800?industry7" alt="Industry 7">
-          <div class="industry-caption">Lorem ipsum</div>
-        </div>
-      -->
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
+  <footer>
     <div>
       <h4>About Our Company</h4>
       <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
       <div class="coin-images">
-        <img src= images/ISO-9001-Certified-Company.png alt="Coin Image 1" />
+        <img src="images/ISO-9001-Certified-Company.png" alt="Coin Image 1" />
         <img src="images/zed.webp" alt="Coin Image 2" />
       </div>
     </div>
@@ -558,10 +725,11 @@
     </div>
   </footer>
 
-
   <script>
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-content');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
     function openModal(type) {
       let content = '';
@@ -580,21 +748,31 @@
       modal.classList.remove('active');
     });
 
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
     let slideIndex = 0;
     setInterval(() => {
       slideIndex = (slideIndex + 1) % 3;
-      document.getElementById('hero-slider').style.transform = `translateX(-${slideIndex * 100}vw)`;
+      document.getElementById('hero-slider').style.transform = `translateX(-${slideIndex * 100}%)`;
     }, 3000);
 
     let currentIndex = 0;
-const carousel = document.getElementById('carousel');
-const items = document.querySelectorAll('.industry-item');
-const totalItems = items.length;
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.industry-item');
+    const totalItems = items.length;
 
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % totalItems;
-  carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
-}, 3000);
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 3000);
+
+    // Clone the scrolling images for seamless looping
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollingContent = document.querySelector('.scrolling-images');
+      scrollingContent.innerHTML += scrollingContent.innerHTML;
+    });
   </script>
 </body>
 </html>
