@@ -67,7 +67,7 @@
       font-weight: bold;
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
       transition: all 0.3s ease;
-      cursor: pointer;
+      cursor: button;
     }
 
     .quote-btn:hover {
@@ -594,7 +594,7 @@
     .clients-slider {
       display: flex;
       width: max-content;
-      animation: scroll-left 65s linear infinite;
+      animation: scroll-left 40s linear infinite;
       gap: 2rem;
       transform-style: preserve-3d;
     }
@@ -641,6 +641,73 @@
       color: #aaa;
     }
 
+    /*Explore Unit 2 */
+
+    /* Footer Styles */
+    footer {
+        background-color: #111;
+        padding: 3rem 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        color: #ccc;
+        font-size: 0.95rem;
+        font-family: 'Work Sans', sans-serif;
+    }
+
+    footer div {
+        margin-bottom: 2rem;
+        max-width: 250px;
+    }
+
+    footer h4 {
+        color: #ffd700;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    footer p {
+        margin: 0.5rem 0;
+        line-height: 1.5;
+    }
+
+    footer a {
+        color: #ccc;
+        text-decoration: none;
+        display: block;
+        margin: 0.3rem 0;
+        transition: color 0.3s ease;
+        font-weight: 500;
+    }
+
+    footer a:hover {
+        color: #fff;
+    }
+
+    .coin-images {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .coin-images img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 0%;
+        border: 1px solid #444;
+    }
+
+    .footer-bottom {
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #444;
+        padding-top: 1rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #aaa;
+        font-family: 'Work Sans', sans-serif;
+    }
   </style>
 </head>
 <body>
@@ -658,11 +725,13 @@
       <div class="nav-links" id="nav-links">
         <a href="index.html">Home</a>
         <a href="About.html">About Us</a>
-        <a href="#">Services</a>
+        <a href="service.html">Services</a>
         <a href="#">Products</a>
         <a href="#">Gallery</a>
-        <a href="#">Contact</a>
+        <a href="contactxyz.html">Contact</a>
+        <a href="contactxyz.html">
         <button class="quote-btn">Get a Quote</button>
+        </a>
       </div>
     </nav>
   </header>
@@ -734,6 +803,21 @@
     </div>
   </section>
 
+  <!--Explore Unit 2 button-->
+  
+<div style="width: 100%; text-align: center; margin-top: 50px; margin-bottom: 20px;">
+    <a href="Explore_Unit_ll.html" target="_blank" style="text-decoration: none; display: inline-block;">
+        <button style="background-color: black; color: yellow; border: 2px solid yellow; 
+                     padding: 15px 60px; font-size: 18px; font-weight: bold; 
+                     border-radius: 0; cursor: pointer; transition: all 0.3s ease;
+                     min-width: 250px;"
+                onmouseover="this.style.backgroundColor='yellow';this.style.color='black';"
+                onmouseout="this.style.backgroundColor='black';this.style.color='yellow';">
+            Explore Unit 2
+        </button>
+    </a>
+</div>
+
   <!-- Our Guiding Principles Section -->
   <header class="vision-mission-header">
     <div class="header-content container">
@@ -791,16 +875,51 @@
       <div class="client-logo"><img src="images/Our Clients/Rd Electronics.png" alt="Client 11" /></div>
       <div class="client-logo"><img src="images/Our Clients/Saket.png" alt="Client 12" /></div>
       <div class="client-logo"><img src="images/Our Clients/Tarsons.png" alt="Client 13" /></div>
-      <div class="client-logo"><img src="images/Our Clients/Cleetek" alt="Client 14" /></div>
-      <div class="client-logo"><img src="images/Our Clients/" alt="Client 15" /></div>
+      <div class="client-logo"><img src="images/Our Clients/Giovenza.png" alt="Client 14" /></div>
+      <div class="client-logo"><img src="images/Our Clients/wolverine.png" alt="Client 15" /></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    © 2025 Perfect Technologies. All rights reserved.
-  </div>
+  <!-- New Footer Section -->
+  <footer>
+    <div>
+        <h4>About Our Company</h4>
+        <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+        <div class="coin-images">
+            <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified" />
+            <img src="images/zed.webp" alt="ZED Certification" />
+        </div>
+    </div>
+    <div>
+        <h4>Talk to Our Officers</h4>
+        <p>+91 902 141 9645</p>
+        <p>+91 955 284 0033</p>
+    </div>
+    <div>
+        <h4>Our Solutions</h4>
+        <a href="#">Automotive Parts and Industries</a>
+        <a href="#">Export Unit / Valve Industries</a>
+        <a href="#">Agriculture and Food Industries</a>
+        <a href="#">Tool Room</a>
+    </div>
+    <div>
+        <h4>Useful Links</h4>
+        <a href="indexXYX.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="service.html">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Gallery</a>
+        <a href="contactxyz.html">Contact Us</a>
+        <a href="#">Locate Us</a>
+    </div>
 
+    <!-- Copyright line -->
+    <div class="footer-bottom">
+        2025 © All Rights Reserved - Perfect Technologies
+    </div>
+  </footer>
+
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
