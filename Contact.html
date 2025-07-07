@@ -5,15 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Perfect Technologies | Precision Manufacturing Solutions</title>
     <style>
-        :root {
-            --gold: #FFD700;
-            --gold-dark: #FFA500;
-            --black: #121212;
-            --black-light: #1e1e1e;
-            --black-lighter: #2a2a2a;
-            --text: #e6e6e6;
-        }
-
+        /* Navbar Styles */
         * {
             margin: 0;
             padding: 0;
@@ -23,9 +15,124 @@
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background-color: var(--black);
+            color: #e6e6e6;
+            background-color: #121212;
             background-image: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0) 20%);
+        }
+
+        .navbar-header {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .logo img {
+            width: 240px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .quote-btn {
+            background-color: #ffd700;
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quote-btn:hover {
+            transform: scale(1.05);
+            background-color: #fff9d1;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: #ffd700;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .quote-btn {
+                align-self: flex-start;
+            }
+
+            .logo img {
+                width: 180px;
+                height: auto;
+            }
+        }
+
+        /* Contact Page Styles */
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --black: #121212;
+            --black-light: #1e1e1e;
+            --black-lighter: #2a2a2a;
+            --text: #e6e6e6;
         }
 
         .container {
@@ -34,8 +141,8 @@
             padding: 0 20px;
         }
 
-        /* Header */
-        header {
+        /* Header/Hero Section */
+        .page-header {
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80') center/cover no-repeat;
             height: 400px;
             display: flex;
@@ -44,11 +151,13 @@
             text-align: center;
             position: relative;
             border-bottom: 3px solid var(--gold);
+            margin-top: 0;
         }
 
         .hero-content {
             max-width: 800px;
             z-index: 1;
+            padding: 0 20px;
         }
 
         .hero-content h1 {
@@ -350,10 +459,57 @@
             transform: translateY(-2px);
         }
 
-        /* Responsive */
+        /* Responsive Improvements */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
+            .page-header {
+                height: 300px;
+                margin-top: 0;
+            }
+            
             .hero-content h1 {
                 font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+                padding: 2rem 0;
+            }
+            
+            .contact-form-section, 
+            .map-section, 
+            .trust-section, 
+            .faq-section, 
+            .cta-footer {
+                padding: 2rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .map-container {
+                height: 350px;
             }
             
             .map-overlay {
@@ -362,15 +518,180 @@
                 left: auto;
                 max-width: 100%;
                 margin-bottom: 1rem;
+                margin-top: 1rem;
+                margin-left: 0;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .trust-badge {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .client-logos {
+                gap: 1rem;
+            }
+            
+            .client-logo {
+                height: 40px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            details {
+                margin-bottom: 0.5rem;
+            }
+            
+            summary {
+                padding: 0.75rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .page-header {
+                height: 250px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .gold-button, .cta-button {
+                padding: 10px 20px;
+                width: 100%;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .cta-footer h3 {
+                font-size: 1.5rem;
+            }
+            
+            input, select, textarea {
+                padding: 10px;
+            }
+            
+            textarea {
+                min-height: 120px;
+            }
+        }
+
+        /*footer*/
+        footer {
+            background-color: #111;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            color: #ccc;
+            font-size: 0.95rem;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        footer div {
+            margin-bottom: 2rem;
+            max-width: 250px;
+        }
+
+        footer h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin: 0.3rem 0;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .coin-images {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .coin-images img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 0%;
+            border: 1px solid #444;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #aaa;
+            font-family: 'Work Sans', sans-serif;
+        }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <header class="navbar-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.webp" alt="Perfect Technologies Logo">
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="indexXYX.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="service.html">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Gallery</a>
+                <a href="contactxyz.html">Contact</a>
+                <button class="quote-btn">Get a Quote</button>
+            </div>
+        </nav>
+    </header>
+
     <!-- Header/Hero Section -->
-    <header>
+    <header class="page-header">
         <div class="hero-content">
             <h1>Precision Engineered Solutions Start Here</h1>
             <p>Connect with our engineering team for mission-critical manufacturing</p>
@@ -382,8 +703,8 @@
         <div class="contact-methods">
             <div class="contact-card">
                 <h3><i class="fas fa-phone-alt contact-icon"></i> Sales</h3>
-                <p><strong>Email:</strong> sales@perfecttech.com</p>
-                <p><strong>Phone:</strong> +91 XXXX XXX XXX</p>
+                <p><strong>Email:</strong> sales@perfect-technologies.com</p>
+                <p><strong>Phone:</strong> +91 9588484520</p>
                 <p><strong>Hours:</strong> Mon-Fri, 9AM-6PM IST</p>
             </div>
             
@@ -396,9 +717,8 @@
             
             <div class="contact-card">
                 <h3><i class="fas fa-briefcase contact-icon"></i> Careers</h3>
-                <p><strong>Email:</strong> hr@perfecttech.com</p>
-                <p><strong>Phone:</strong> +91 XXXX XXX XXX</p>
-             <!--   <p><strong>View Open Positions</strong></p> -->
+                <p><strong>Email:</strong> info@perfect-technologies.com</p>
+                <p><strong>Phone:</strong> +91 9175092040</p>
             </div>
         </div>
     </section>
@@ -452,7 +772,6 @@
     </section>
 
     <!-- Map Section -->
-       <!-- Map Section -->
     <section class="map-section container">
         <h2 class="section-title">Our Manufacturing Facility</h2>
         <div class="map-container">
@@ -494,10 +813,10 @@
             </div>
             
             <div class="client-logos">
-                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=BOSCH" alt="Bosch" class="client-logo">
-                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=HITACHI" alt="Hitachi" class="client-logo">
-                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=MINDA" alt="Minda" class="client-logo">
-                <img src="https://via.placeholder.com/150x60/333333/FFFFFF?text=TVS" alt="TVS" class="client-logo">
+                <img src="images/Our Clients/Hitachi.png" alt="Hitachi" class="client-logo">
+                <img src="images/Our Clients/Tarsons.png" alt="Tarsons" class="client-logo">
+                <img src="images/Our Clients/Minda.jpg" alt="Minda" class="client-logo">
+                <img src="images/Our Clients/Ariston.png" alt="Ariston" class="client-logo">
             </div>
         </div>
     </section>
@@ -545,11 +864,57 @@
         </div>
     </section>
 
+    <footer>
+    <div>
+        <h4>About Our Company</h4>
+        <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+        <div class="coin-images">
+            <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified" />
+            <img src="images/zed.webp" alt="ZED Certification" />
+        </div>
+    </div>
+    <div>
+        <h4>Talk to Our Officers</h4>
+        <p>+91 902 141 9645</p>
+        <p>+91 955 284 0033</p>
+    </div>
+    <div>
+        <h4>Our Solutions</h4>
+        <a href="#">Automotive Parts and Industries</a>
+        <a href="#">Export Unit / Valve Industries</a>
+        <a href="#">Agriculture and Food Industries</a>
+        <a href="#">Tool Room</a>
+    </div>
+    <div>
+        <h4>Useful Links</h4>
+        <a href="indexXYX.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="service.html">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Gallery</a>
+        <a href="contactxyz.html">Contact Us</a>
+        <a href="#">Locate Us</a>
+    </div>
+
+    <!-- Copyright line -->
+    <div class="footer-bottom">
+        2025 © All Rights Reserved - Perfect Technologies
+    </div>
+</footer>
+
+
     <script>
+        // Navbar Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
         // Form submission handling
         document.querySelector('.industrial-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would typically send the form data to your server
             alert('Thank you for your inquiry! Our engineering team will contact you within 2 business hours.');
             this.reset();
         });
