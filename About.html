@@ -6,29 +6,35 @@
   <title>Perfect Technologies</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* Updated Navbar Styles */
+    * {
       margin: 0;
-      font-family: 'DM Sans', sans-serif;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
     }
 
-   header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* ensures it stays above everything else */
-}
+    body {
+      background-color: #0a0a0a;
+      margin-top: 80px; /* Added to account for fixed navbar */
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+      z-index: 1000;
+    }
 
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
-      margin: auto;
       flex-wrap: wrap;
-      position: relative;
     }
 
     .logo img {
@@ -67,7 +73,7 @@
       font-weight: bold;
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
       transition: all 0.3s ease;
-      cursor: button;
+      cursor: pointer;
     }
 
     .quote-btn:hover {
@@ -75,28 +81,27 @@
       background-color: #fff9d1;
     }
 
+    /* Mobile Menu Toggle */
     .menu-toggle {
       display: none;
-      flex-direction: column;
+      background: none;
+      border: none;
+      color: #ffd700;
+      font-size: 1.5rem;
       cursor: pointer;
     }
 
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background: #ffd700;
-      margin: 4px 0;
-      transition: 0.3s;
-    }
-
+    /* Responsive Styles */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
       }
 
       .nav-links {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
         width: 100%;
         margin-top: 1rem;
@@ -108,13 +113,28 @@
       }
 
       .quote-btn {
-        align-self: flex-start;
+        margin-top: 1rem;
       }
 
       .logo img {
         width: 180px;
         height: auto;
       }
+
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+    }
+
+    /* Rest of your existing styles */
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: #000;
+      color: #fff;
     }
 
     .about-section, .founder-section {
@@ -633,69 +653,85 @@
       }
     }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #111;
-      color: #aaa;
-    }
-
-    /*Explore Unit 2 */
-
-    /* Footer Styles */
+    /* New Footer Styles */
     footer {
-        background-color: #111;
-        padding: 3rem 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        color: #ccc;
-        font-size: 0.95rem;
-        font-family: 'Work Sans', sans-serif;
+      background-color: #111;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      color: #ccc;
+      font-size: 0.95rem;
     }
 
     footer div {
-        margin-bottom: 2rem;
-        max-width: 250px;
+      margin-bottom: 2rem;
+      max-width: 250px;
     }
 
     footer h4 {
-        color: #ffd700;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-
-    footer p {
-        margin: 0.5rem 0;
-        line-height: 1.5;
+      color: #ffd700;
+      margin-bottom: 1rem;
     }
 
     footer a {
-        color: #ccc;
-        text-decoration: none;
-        display: block;
-        margin: 0.3rem 0;
-        transition: color 0.3s ease;
-        font-weight: 500;
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin: 0.3rem 0;
     }
 
     footer a:hover {
-        color: #fff;
+      color: #fff;
     }
 
     .coin-images {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
 
     .coin-images img {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 0%;
-        border: 1px solid #444;
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 0%;
+      border: 1px solid #444;
+    }
+
+    .copyright {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+      background-color: #111;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsive Styles for Footer */
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      
+      footer div {
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .coin-images {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .coin-images img {
+        width: 60px;
+        height: 60px;
+      }
     }
 
     .footer-bottom {
@@ -711,26 +747,22 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Updated Navbar -->
   <header>
     <nav class="navbar">
       <div class="logo">
         <img src="images/logo.webp" alt="Perfect Technologies Logo">
       </div>
-      <div class="menu-toggle" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="nav-links" id="nav-links">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="About.html">About Us</a>
         <a href="service.html">Services</a>
         <a href="#">Products</a>
         <a href="#">Gallery</a>
-        <a href="contactxyz.html">Contact</a>
-        <a href="contactxyz.html">
-        <button class="quote-btn">Get a Quote</button>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html">
+          <button class="quote-btn">Get a Quote</button>
         </a>
       </div>
     </nav>
@@ -883,54 +915,76 @@
   <!-- New Footer Section -->
   <footer>
     <div>
-        <h4>About Our Company</h4>
-        <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
-        <div class="coin-images">
-            <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified" />
-            <img src="images/zed.webp" alt="ZED Certification" />
-        </div>
+      <h4>About Our Company</h4>
+      <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+      <div class="coin-images">
+        <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified">
+        <img src="images/zed.webp" alt="ZED Certification">
+      </div>
     </div>
     <div>
-        <h4>Talk to Our Officers</h4>
-        <p>+91 902 141 9645</p>
-        <p>+91 955 284 0033</p>
+      <h4>Talk to Our Officers</h4>
+      <p>+91 902 141 9645</p>
+      <p>+91 955 284 0033</p>
     </div>
     <div>
-        <h4>Our Solutions</h4>
-        <a href="#">Automotive Parts and Industries</a>
-        <a href="#">Export Unit / Valve Industries</a>
-        <a href="#">Agriculture and Food Industries</a>
-        <a href="#">Tool Room</a>
+      <h4>Our Solutions</h4>
+      <a href="#">Automotive Parts and Industries</a>
+      <a href="#">Export Unit / Valve Industries</a>
+      <a href="#">Agriculture and Food Industries</a>
+      <a href="#">Tool Room</a>
     </div>
     <div>
-        <h4>Useful Links</h4>
-        <a href="indexXYX.html">Home</a>
-        <a href="About.html">About Us</a>
-        <a href="service.html">Services</a>
-        <a href="#">Products</a>
-        <a href="#">Gallery</a>
-        <a href="contactxyz.html">Contact Us</a>
-        <a href="#">Locate Us</a>
-    </div>
-
-    <!-- Copyright line -->
-    <div class="footer-bottom">
-        2025 © All Rights Reserved - Perfect Technologies
+      <h4>Useful Links</h4>
+      <a href="index.html">Home</a>
+      <a href="About.html">About Us</a>
+      <a href="service.html">Services</a>
+      <a href="#">Products</a>
+      <a href="#">Gallery</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#">Locate Us</a>
     </div>
   </footer>
+
+  <!-- Copyright line -->
+    <div class="footer-bottom">
+        2025 © All Rights Reserved - Perfect Technologies. Developed by MBJ Technologies
+    </div>
 
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
+    // Navbar Toggle Script
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        
+        // Change icon based on menu state
+        if (navLinks.classList.contains('active')) {
+          this.innerHTML = '✕';
+        } else {
+          this.innerHTML = '☰';
+        }
+      });
+
+      // Close menu when clicking on a link (for mobile)
+      const navItems = document.querySelectorAll('.nav-links a');
+      navItems.forEach(item => {
+        item.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+            menuToggle.innerHTML = '☰';
+          }
+        });
+      });
     });
 
+    // Existing animation scripts
     document.querySelectorAll('.timeline-item, .future-card').forEach(item => {
       item.addEventListener('mousemove', (e) => {
         const rect = item.getBoundingClientRect();
