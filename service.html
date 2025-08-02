@@ -29,6 +29,9 @@
             background: rgba(0, 0, 0, 0.85);
             padding: 1rem 2rem;
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .navbar {
@@ -62,6 +65,11 @@
             transition: color 0.3s, transform 0.3s;
         }
         
+        .nav-links a.active {
+            color: #ffd700;
+            font-weight: 500;
+        }
+        
         .nav-links a:hover {
             transform: translateY(-2px);
             color: #ffffff;
@@ -84,6 +92,54 @@
             background-color: #fff9d1;
         }
         
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+        
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .quote-btn {
+                margin-top: 1rem;
+            }
+        
+            .logo img {
+                width: 180px;
+                height: auto;
+            }
+        
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+        }
+
         .services-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -295,29 +351,18 @@
             .services-header h1 {
                 font-size: 1.8rem;
             }
-            
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            
-            .quote-btn {
-                align-self: flex-start;
-            }
-            
-            .logo img {
-                width: 180px;
-                height: auto;
-            }
         }
+
+        .footer-bottom {
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #444;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #aaa;
+        font-family: 'Work Sans', sans-serif;
+    }
     </style>
 </head>
 <body>
@@ -326,14 +371,17 @@
             <div class="logo">
                 <img src="images/logo.webp" alt="Perfect Technologies Logo">
             </div>
-            <div class="nav-links">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="About.html">About Us</a>
                 <a href="service.html" class="active">Services</a>
-                <a href="#">Products</a>
-                <a href="#">Gallery</a>
-                <a href="Contact.html">Contact</a>
-                <button class="quote-btn">Get a Quote</button>
+                <a href="products.html">Products</a>
+                <a href="Gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html">
+                    <button class="quote-btn">Get a Quote</button>
+                </a>
             </div>
         </nav>
     </header>
@@ -417,26 +465,57 @@
         </div>
         <div>
             <h4>Our Solutions</h4>
-            <a href="#">Automotive Parts and Industries</a>
-            <a href="#">Export Unit / Valve Industries</a>
-            <a href="#">Agriculture and Food Industries</a>
-            <a href="#">Tool Room</a>
+            <a href="Automotive_Products.html">Automotive Parts and Industries</a>
+            <a href="Export_Valve_Products.html">Export Unit / Valve Industries</a>
+            <a href="Agriculture_Food_Products.html ">Agriculture and Food Industries</a>
+            <a href="Tool_Room.html">Tool Room</a>
         </div>
         <div>
             <h4>Useful Links</h4>
             <a href="index.html">Home</a>
             <a href="About.html">About Us</a>
-            <a href="#">Services</a>
-            <a href="#">Products</a>
-            <a href="#">Gallery</a>
+            <a href="service.html">Services</a>
+            <a href="Main_Products_Page.html">Products</a>
+            <a href="Gallery.html">Gallery</a>
             <a href="Contact.html">Contact Us</a>
             <a href="#">Locate Us</a>
         </div>
     </footer>
 
+      <!-- Copyright line -->
+    <div class="footer-bottom">
+        2025 © All Rights Reserved - Perfect Technologies. Developed by MBJ Technologies
+    </div>
+
     <script>
-        // Simple animation trigger when scrolling
+        // Navbar mobile toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                
+                // Change icon based on menu state
+                if (navLinks.classList.contains('active')) {
+                    this.innerHTML = '✕';
+                } else {
+                    this.innerHTML = '☰';
+                }
+            });
+
+            // Close menu when clicking on a link (for mobile)
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        menuToggle.innerHTML = '☰';
+                    }
+                });
+            });
+            
+            // Animation trigger when scrolling
             const serviceCards = document.querySelectorAll('.service-card');
             
             const observer = new IntersectionObserver((entries) => {
@@ -462,11 +541,5 @@
             });
         });
     </script>
-
-        <div style="text-align: center; width: 100%; padding: 10px; background-color: #111; color: #ccc; font-size: 0.9rem;">
-        2025 &copy; All Rights Reserved - Perfect Technologies
-    </div>
-</body>
-</html>
 </body>
 </html>
