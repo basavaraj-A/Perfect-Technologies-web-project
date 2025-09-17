@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffcc00;
+            padding-top: 80px; /* Added padding to account for fixed navbar */
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #ffcc00;
+            animation: underlinePulse 2s infinite;
+        }
+
+        @keyframes underlinePulse {
+            0% { width: 100px; }
+            50% { width: 150px; }
+            100% { width: 100px; }
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.2);
+            aspect-ratio: 1 / 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffcc00;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        /* Animation for gallery items */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery-item {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+
+        body {
+            background-color: #0a0a0a;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            width: 240px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .quote-btn {
+            background-color: #ffd700;
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quote-btn:hover {
+            transform: scale(1.05);
+            background-color: #fff9d1;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+
+            .quote-btn {
+                margin-top: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .logo img {
+                width: 180px;
+                height: auto;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+        }
+
+        /* Footer CSS */
+    footer {
+      background-color: #111;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    footer div {
+      margin-bottom: 2rem;
+      max-width: 250px;
+    }
+
+    footer h4 {
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin: 0.3rem 0;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .coin-images {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .coin-images img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 0%;
+      border: 1px solid #444;
+    }
+
+    .copyright {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+      background-color: #111;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      
+      footer div {
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .coin-images {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .coin-images img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+     .footer-bottom {
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #444;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #aaa;
+        font-family: 'Work Sans', sans-serif;
+    }
+
+    </style>
+</head>
+<body>
+
+<header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.webp" alt="Perfect Technologies Logo">
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="service.html">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Gallery</a>
+                <a href="contactxyz.html">Contact</a>
+                <a href="contactxyz.html">
+                    <button class="quote-btn">Get a Quote</button>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="gallery-container">
+        <h1 class="section-title">Our Gallery</h1>
+        
+        <div class="gallery-grid">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?business,meeting" alt="Business Meeting">
+                <div class="gallery-caption">
+                    <h3>Team Collaboration</h3>
+                    <p>Our team working together on innovative solutions</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?office,workspace" alt="Office Space">
+                <div class="gallery-caption">
+                    <h3>Modern Workspace</h3>
+                    <p>Our state-of-the-art office environment</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?presentation" alt="Client Presentation">
+                <div class="gallery-caption">
+                    <h3>Client Engagement</h3>
+                    <p>Delivering impactful presentations to our clients</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?technology" alt="Technology">
+                <div class="gallery-caption">
+                    <h3>Cutting-edge Tech</h3>
+                    <p>Utilizing the latest technology for your business</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?success,celebration" alt="Celebration">
+                <div class="gallery-caption">
+                    <h3>Success Moments</h3>
+                    <p>Celebrating milestones with our team</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?networking" alt="Networking">
+                <div class="gallery-caption">
+                    <h3>Industry Events</h3>
+                    <p>Networking at major industry conferences</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 7 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?product,display" alt="Product Display">
+                <div class="gallery-caption">
+                    <h3>Our Products</h3>
+                    <p>High-quality solutions for your needs</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 8 -->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?training" alt="Training Session">
+                <div class="gallery-caption">
+                    <h3>Team Development</h3>
+                    <p>Continuous learning and skill enhancement</p>
+                </div>
+            </div>
+
+            <!--Gallery item 9-->
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/random/600x600/?training" alt="Other">
+                <div class="gallery-caption">
+                    <h3>Team Development</h3>
+                    <p>Continuous learning and skill enhancement</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                
+                // Change icon based on menu state
+                if (navLinks.classList.contains('active')) {
+                    this.innerHTML = '✕';
+                } else {
+                    this.innerHTML = '☰';
+                }
+            });
+
+            // Close menu when clicking on a link (for mobile)
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        menuToggle.innerHTML = '☰';
+                    }
+                });
+            });
+        });
+    </script>
+
+<!-- Footer HTML -->
+  <footer>
+    <div>
+      <h4>About Our Company</h4>
+      <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+      <div class="coin-images">
+        <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified">
+        <img src="images/zed.webp" alt="ZED Certification">
+      </div>
+    </div>
+    <div>
+      <h4>Talk to Our Officers</h4>
+      <p>+91 902 141 9645</p>
+      <p>+91 955 284 0033</p>
+    </div>
+    <div>
+      <h4>Our Solutions</h4>
+      <a href="Automotive_Products.html">Automotive Parts and Industries</a>
+      <a href="Export_Valve_Products.html">Export Unit / Valve Industries</a>
+      <a href="Agriculture_Food_Products.html">Agriculture and Food Industries</a>
+      <a href="Tool_Room.html">Tool Room</a>
+    </div>
+    <div>
+      <h4>Useful Links</h4>
+      <a href="indexXYX.html">Home</a>
+      <a href="About.html">About Us</a>
+      <a href="service.html">Services</a>
+      <a href="Main_Products_Page.html">Products</a>
+      <a href="Gallery.html">Gallery</a>
+      <a href="contactxyz.html">Contact Us</a>
+      <a href="#">Locate Us</a>
+    </div>
+  </footer>
+
+  
+<!-- Copyright line -->
+    <div class="footer-bottom">
+        2025 © All Rights Reserved - Perfect Technologies. Developed by MBJ Technologies
+    </div>
+
+  <!-- No JavaScript needed for this footer as it's purely presentational -->
+
+</body>
+</html>
