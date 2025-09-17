@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Products | Your Company Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navbar Styles */
+        body {
+            background-color: #0a0a0a;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            width: 240px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .quote-btn {
+            background-color: #ffd700;
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quote-btn:hover {
+            transform: scale(1.05);
+            background-color: #fff9d1;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles for Navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .quote-btn {
+                margin-top: 1rem;
+            }
+
+            .logo img {
+                width: 180px;
+                height: auto;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+        }
+
+        /* Page Content Styles */
+        :root {
+            --primary: #FFD700; /* Gold/Yellow */
+            --secondary: #000000; /* Black */
+            --text-light: #f8f8f8;
+            --text-dark: #333333;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://example.com/industrial-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .products-container {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e6c200;
+        }
+        
+        /* Product Detail Pages */
+        .product-detail-page {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-detail-page.active {
+            display: block;
+        }
+        
+        .back-btn {
+            margin-bottom: 2rem;
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .back-btn:hover {
+            background-color: #333;
+        }
+        
+        .detail-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .detail-intro-text h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .detail-intro-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .detail-intro-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .detail-intro-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .product-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-item-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .product-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-item-info {
+            padding: 1.5rem;
+        }
+        
+        .product-item-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .product-item-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .product-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-intro {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer CSS */
+        footer {
+          background-color: #111;
+          padding: 3rem 2rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          color: #ccc;
+          font-size: 0.95rem;
+        }
+
+        footer div {
+          margin-bottom: 2rem;
+          max-width: 250px;
+        }
+
+        footer h4 {
+          color: #ffd700;
+          margin-bottom: 1rem;
+        }
+
+        footer a {
+          color: #ccc;
+          text-decoration: none;
+          display: block;
+          margin: 0.3rem 0;
+        }
+
+        footer a:hover {
+          color: #fff;
+        }
+
+        .coin-images {
+          display: flex;
+          gap: 0.5rem;
+          margin-top: 1rem;
+        }
+
+        .coin-images img {
+          width: 70px;
+          height: 70px;
+          object-fit: cover;
+          border-radius: 0%;
+          border: 1px solid #444;
+        }
+
+        .copyright {
+          text-align: center;
+          width: 100%;
+          padding: 20px;
+          background-color: #111;
+          color: #ccc;
+          font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          footer {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+          }
+          
+          footer div {
+            max-width: 100%;
+            width: 100%;
+          }
+          
+          .coin-images {
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .coin-images img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.webp" alt="Perfect Technologies Logo">
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="service.html">Services</a>
+                <a href="#">Products</a>
+                <a href="#">Gallery</a>
+                <a href="contactxyz.html">Contact</a>
+                <a href="contactxyz.html">
+                    <button class="quote-btn">Get a Quote</button>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Products Page -->
+    <section class="hero" id="main-hero">
+        <h1>INDUSTRIAL PRODUCTS & SOLUTIONS</h1>
+        <p>High-quality components and systems for diverse industries worldwide</p>
+    </section>
+    
+    <section class="products-container" id="main-products">
+        <div class="section-title">
+            <h2>Our Product Categories</h2>
+        </div>
+        
+        <div class="product-categories">
+            <!-- Automotive and Parts -->
+            <div class="product-card" onclick="showProductPage('automotive')">
+                <div class="product-image">
+                    <img src="images/Products/Automotive products HeadShot.jpg" alt="Automotive and Parts">
+                </div>
+                <div class="product-info">
+                    <h3>Automotive & Parts Industries</h3>
+                    <p>Premium components for vehicle manufacturing and maintenance</p>
+                    <button class="btn">Explore Products</button>
+                </div>
+            </div>
+            
+            <!-- Export Transportation -->
+            <div class="product-card" onclick="showProductPage('export')">
+                <div class="product-image">
+                    <img src="images/Products/Transportation.jpg" alt="Export Transportation">
+                </div>
+                <div class="product-info">
+                    <h3>Export Transportation & Valve Industries</h3>
+                    <p>Specialized valves and transportation units for global markets</p>
+                    <button class="btn">Explore Products</button>
+                </div>
+            </div>
+            
+            <!-- Agriculture and Food -->
+            <div class="product-card" onclick="showProductPage('agriculture')">
+                <div class="product-image">
+                    <img src="images/Products/Agriculture.jpg" alt="Agriculture and Food">
+                </div>
+                <div class="product-info">
+                    <h3>Agriculture & Food Industries</h3>
+                    <p>Equipment and solutions for modern farming and food processing</p>
+                    <button class="btn">Explore Products</button>
+                </div>
+            </div>
+            
+            <!-- Tool Room -->
+            <div class="product-card" onclick="showProductPage('toolroom')">
+                <div class="product-image">
+                    <img src="images/Products/Tool Room.jpg" alt="Tool Room">
+                </div>
+                <div class="product-info">
+                    <h3>Tool Room</h3>
+                    <p>Precision tools and equipment for industrial applications</p>
+                    <button class="btn">Explore Products</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Automotive Products Page -->
+    <section class="product-detail-page" id="automotive-page">
+        <button class="btn back-btn" onclick="showMainPage()">← Back to Products</button>
+        
+        <div class="detail-intro">
+            <div class="detail-intro-text">
+                <h2>Automotive & Parts Solutions</h2>
+                <p>With over 20 years of experience in the automotive industry, we provide high-quality parts and components that meet the rigorous demands of modern vehicle manufacturing and maintenance. Our products are engineered for durability, performance, and precision.</p>
+                <p>We serve OEM manufacturers, aftermarket suppliers, and repair shops with a comprehensive range of automotive solutions. Our commitment to quality and innovation has made us a trusted partner for leading automotive brands worldwide.</p>
+                <a href="/contact.html" class="btn">Contact Our Automotive Team</a>
+            </div>
+            <div class="detail-intro-image">
+                <img src="images/Products/Automotive/image 5.jpg" alt="Automotive Parts Manufacturing">
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 2rem;">Our Automotive Products</h3>
+        <div class="products-grid">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/engine-components.jpg" alt="Engine Components">
+                </div>
+                <div class="product-item-info">
+                    <h4>Engine Components</h4>
+                    <p>High-performance pistons, valves, camshafts, and timing systems for all vehicle types.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/transmission-parts.jpg" alt="Transmission Parts">
+                </div>
+                <div class="product-item-info">
+                    <h4>Transmission Systems</h4>
+                    <p>Precision gears, shafts, and clutch components for smooth power delivery.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/suspension-parts.jpg" alt="Suspension Components">
+                </div>
+                <div class="product-item-info">
+                    <h4>Suspension Components</h4>
+                    <p>Durable shocks, struts, control arms, and bushings for optimal ride quality.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/braking-systems.jpg" alt="Braking Systems">
+                </div>
+                <div class="product-item-info">
+                    <h4>Braking Systems</h4>
+                    <p>High-performance brake pads, rotors, calipers, and hydraulic components.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Export & Valve Products Page -->
+    <section class="product-detail-page" id="export-page">
+        <button class="btn back-btn" onclick="showMainPage()">← Back to Products</button>
+        
+        <div class="detail-intro">
+            <div class="detail-intro-text">
+                <h2>Export Transportation & Valve Solutions</h2>
+                <p>As a leader in valve manufacturing and export transportation solutions, we provide reliable, high-quality products that meet international standards. Our valves are engineered for precision control in the most demanding industrial environments.</p>
+                <p>From petrochemical plants to water treatment facilities, our products serve critical applications worldwide. With certifications for global markets, we ensure compliance with the strictest industry regulations and performance requirements.</p>
+                <a href="/contact.html" class="btn">Contact Our Valve Specialists</a>
+            </div>
+            <div class="detail-intro-image">
+                <img src="https://example.com/valve-industry-intro.jpg" alt="Valve Manufacturing Facility">
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 2rem;">Our Valve & Transportation Products</h3>
+        <div class="products-grid">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/industrial-valves.jpg" alt="Industrial Valves">
+                </div>
+                <div class="product-item-info">
+                    <h4>Industrial Process Valves</h4>
+                    <p>Gate, globe, check, and ball valves for high-pressure applications in various industries.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/transportation-units.jpg" alt="Transportation Units">
+                </div>
+                <div class="product-item-info">
+                    <h4>Export Transportation Units</h4>
+                    <p>Specialized containers and systems for safe international transport of industrial components.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/control-valves.jpg" alt="Control Valves">
+                </div>
+                <div class="product-item-info">
+                    <h4>Precision Control Valves</h4>
+                    <p>Automated control valves with advanced monitoring for process industries.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/safety-valves.jpg" alt="Safety Valves">
+                </div>
+                <div class="product-item-info">
+                    <h4>Safety & Relief Valves</h4>
+                    <p>Critical safety components designed to protect systems from overpressure conditions.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Agriculture & Food Products Page -->
+    <section class="product-detail-page" id="agriculture-page">
+        <button class="btn back-btn" onclick="showMainPage()">← Back to Products</button>
+        
+        <div class="detail-intro">
+            <div class="detail-intro-text">
+                <h2>Agriculture & Food Industry Solutions</h2>
+                <p>We provide cutting-edge equipment and systems for the entire agricultural value chain, from farm to table. Our solutions enhance productivity, ensure food safety, and promote sustainable farming practices.</p>
+                <p>With decades of experience serving the agriculture and food sectors, we understand the unique challenges of these industries. Our products meet the highest standards for hygiene, efficiency, and reliability in food production environments.</p>
+                <a href="/contact.html" class="btn">Contact Our Agriculture Team</a>
+            </div>
+            <div class="detail-intro-image">
+                <img src="https://example.com/agriculture-intro.jpg" alt="Modern Agriculture Equipment">
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 2rem;">Our Agriculture & Food Products</h3>
+        <div class="products-grid">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/farming-equipment.jpg" alt="Farming Equipment">
+                </div>
+                <div class="product-item-info">
+                    <h4>Precision Farming Equipment</h4>
+                    <p>Advanced machinery for planting, harvesting, and crop management with GPS guidance systems.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/food-processing.jpg" alt="Food Processing Systems">
+                </div>
+                <div class="product-item-info">
+                    <h4>Food Processing Systems</h4>
+                    <p>Hygienic processing lines for sorting, washing, cutting, and packaging food products.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/irrigation-systems.jpg" alt="Irrigation Systems">
+                </div>
+                <div class="product-item-info">
+                    <h4>Smart Irrigation Systems</h4>
+                    <p>Water-efficient irrigation solutions with automated controls and moisture sensors.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/packaging-machines.jpg" alt="Packaging Machines">
+                </div>
+                <div class="product-item-info">
+                    <h4>Food Packaging Machines</h4>
+                    <p>High-speed packaging equipment for various food products with quality control features.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tool Room Products Page -->
+    <section class="product-detail-page" id="toolroom-page">
+        <button class="btn back-btn" onclick="showMainPage()">← Back to Products</button>
+        
+        <div class="detail-intro">
+            <div class="detail-intro-text">
+                <h2>Tool Room Solutions</h2>
+                <p>Our Tool Room division provides high-quality cutting tools, measuring instruments, and workshop equipment for precision manufacturing. We serve industries ranging from automotive to aerospace with tools that meet the most demanding specifications.</p>
+                <p>With a focus on durability and accuracy, our tools are engineered to enhance productivity while maintaining tight tolerances. We offer both standard tooling solutions and custom-designed tools for specialized applications.</p>
+                <a href="/contact.html" class="btn">Contact Our Tool Specialists</a>
+            </div>
+            <div class="detail-intro-image">
+                <img src="https://example.com/toolroom-intro.jpg" alt="Tool Room Equipment">
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 2rem;">Our Tool Room Products</h3>
+        <div class="products-grid">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/cutting-tools.jpg" alt="Cutting Tools">
+                </div>
+                <div class="product-item-info">
+                    <h4>Precision Cutting Tools</h4>
+                    <p>High-performance drills, end mills, taps, and inserts for various materials and applications.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/measuring-instruments.jpg" alt="Measuring Instruments">
+                </div>
+                <div class="product-item-info">
+                    <h4>Measuring Instruments</h4>
+                    <p>Calipers, micrometers, gauges, and other precision measurement devices.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/machine-tools.jpg" alt="Machine Tools">
+                </div>
+                <div class="product-item-info">
+                    <h4>Machine Tools & Accessories</h4>
+                    <p>Lathes, milling machines, grinders, and supporting tooling systems.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="https://example.com/custom-tooling.jpg" alt="Custom Tooling">
+                </div>
+                <div class="product-item-info">
+                    <h4>Custom Tooling Solutions</h4>
+                    <p>Specialty tools designed for unique manufacturing challenges and applications.</p>
+                    <a href="/contact.html" class="btn">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer HTML -->
+    <footer>
+        <div>
+            <h4>About Our Company</h4>
+            <p>We are a TUV EN-ISO 9001-2015 CERTIFIED COMPANY, supplying precision machining parts for components to various industries.</p>
+            <div class="coin-images">
+                <img src="images/ISO-9001-Certified-Company.png" alt="ISO 9001 Certified">
+                <img src="images/zed.webp" alt="ZED Certification">
+            </div>
+        </div>
+        <div>
+            <h4>Talk to Our Officers</h4>
+            <p>+91 902 141 9645</p>
+            <p>+91 955 284 0033</p>
+        </div>
+        <div>
+            <h4>Our Solutions</h4>
+            <a href="#">Automotive Parts and Industries</a>
+            <a href="#">Export Unit / Valve Industries</a>
+            <a href="#">Agriculture and Food Industries</a>
+            <a href="#">Tool Room</a>
+        </div>
+        <div>
+            <h4>Useful Links</h4>
+            <a href="indexXYX.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="service.html">Services</a>
+            <a href="#">Products</a>
+            <a href="#">Gallery</a>
+            <a href="contactxyz.html">Contact Us</a>
+            <a href="#">Locate Us</a>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        2025 &copy; All Rights Reserved - Perfect Technologies. Developed by MBJ Technologies
+    </div>
+
+    <script>
+        // Navbar Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                
+                // Change icon based on menu state
+                if (navLinks.classList.contains('active')) {
+                    this.innerHTML = '✕';
+                } else {
+                    this.innerHTML = '☰';
+                }
+            });
+
+            // Close menu when clicking on a link (for mobile)
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        menuToggle.innerHTML = '☰';
+                    }
+                });
+            });
+        });
+
+        // Function to show product page
+        function showProductPage(product) {
+            // Hide main page
+            document.getElementById('main-hero').style.display = 'none';
+            document.getElementById('main-products').style.display = 'none';
+            
+            // Hide all product pages
+            document.querySelectorAll('.product-detail-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected product page
+            document.getElementById(product + '-page').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to show main page
+        function showMainPage() {
+            // Show main page
+            document.getElementById('main-hero').style.display = 'flex';
+            document.getElementById('main-products').style.display = 'block';
+            
+            // Hide all product pages
+            document.querySelectorAll('.product-detail-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Check URL hash on page load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash === 'automotive' || hash === 'export' || hash === 'agriculture' || hash === 'toolroom') {
+                showProductPage(hash);
+            }
+        });
+    </script>
+</body>
+</html>
